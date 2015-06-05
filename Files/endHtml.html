@@ -1,0 +1,37 @@
+	  var center = new google.maps.LatLng(lats[0], lngs[0]);
+        var mapOptions = {
+          center: center,
+          zoom: 2,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+		
+		countries= new Array('beirut', 'zahle');
+		
+		addMarkers();
+      }
+	  function addMarker(x, y, name){
+	  
+		 var myLatLng = new google.maps.LatLng(x, y);
+		 
+		 var marker = new google.maps.Marker({
+			position: myLatLng, 
+			title: name,
+			map: map
+	
+		});
+	  }
+	  
+	  function addMarkers(){
+		for(var i=0; i<lats.length; i++){
+			addMarker(lats[i], lngs[i], names[i]);
+		}
+	  }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>

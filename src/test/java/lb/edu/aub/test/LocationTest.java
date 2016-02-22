@@ -1,7 +1,7 @@
 package lb.edu.aub.test;
 
 import static org.junit.Assert.*;
-import lb.edu.aub.cmps.Location;
+import lb.edu.aub.cmps.GeoLocation;
 import lb.edu.aub.exceptions.LocationNotFoundException;
 
 import org.junit.BeforeClass;
@@ -9,14 +9,14 @@ import org.junit.Test;
 
 public class LocationTest 
 {
-	static Location location;
-	static Location location2;
-	static Location location3;
+	static GeoLocation location;
+	static GeoLocation location2;
+	static GeoLocation location3;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws LocationNotFoundException{
-		 location= new Location("Beirut");
-		 location2= new Location("paris");
+		 location= new GeoLocation("Beirut");
+		 location2= new GeoLocation("paris");
 	
 
 	}
@@ -32,7 +32,7 @@ public class LocationTest
 	@Test ( expected = LocationNotFoundException.class )
 	public void testLocationNotFoundException() throws LocationNotFoundException
 	{
-		location3= new Location("bbbbbbbb");
+		location3= new GeoLocation("bbbbbbbb");
 	}
 
 }

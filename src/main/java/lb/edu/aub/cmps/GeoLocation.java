@@ -14,7 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
-public class Location {
+public class GeoLocation {
 	//OVERVIEW Location is a geographical location that has an x-axis and y-axis coordinates and a country 
 	private String location_name;
 	private double x; 
@@ -31,7 +31,7 @@ public class Location {
 	 * sketch of implementation: opens a URL connection to google maps 
 	 * 							parses a JSON object returned and sets the coordinates and the country 
 	 */
-	public Location(String locationName) throws LocationNotFoundException {
+	public GeoLocation(String locationName) throws LocationNotFoundException {
 		JSONParser parser = new JSONParser();
 
 		try {

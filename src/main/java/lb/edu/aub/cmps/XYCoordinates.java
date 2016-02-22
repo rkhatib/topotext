@@ -11,13 +11,13 @@ public class XYCoordinates {
 	//and we return a set of Location as objects having get country longitude and lattitude in them
 	//to be placed as locations on the map
 
-	private Set<Location> locations;
+	private Set<GeoLocation> locations;
 	
 	public XYCoordinates(Set<String> locations_names){
-		locations= new HashSet<Location>();
+		locations= new HashSet<GeoLocation>();
 		for(String location_name: locations_names){
 			try {
-				Location location= new Location(location_name);
+				GeoLocation location= new GeoLocation(location_name);
 				locations.add(location);
 			} catch (LocationNotFoundException e) {
 			}
@@ -25,10 +25,10 @@ public class XYCoordinates {
 	}
 	
 	public XYCoordinates(Set<String> locations_names, String country){
-		locations= new HashSet<Location>();
+		locations= new HashSet<GeoLocation>();
 		for(String location_name: locations_names){
 			try {
-				Location location= new Location(location_name);
+				GeoLocation location= new GeoLocation(location_name);
 				if(location.getCountry().equals(country))
 					locations.add(location);
 			} catch (LocationNotFoundException e) {
@@ -36,7 +36,7 @@ public class XYCoordinates {
 		}
 	}
 
-	public Set<Location> getLocations(){
+	public Set<GeoLocation> getLocations(){
 		return locations;
 	}
 	

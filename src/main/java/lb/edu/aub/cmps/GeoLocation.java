@@ -38,5 +38,7 @@ public class GeoLocation {
 		this.country = country;
 	}
 	
-	
+	public String toString(){
+		return "("+x+", "+y+")  _>  "+country;
+	}
 }

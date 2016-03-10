@@ -19,7 +19,7 @@ public class DrawMap implements DrawMapInterface {
 	public boolean drawMap(Set<String> locations_names){
 
 		XYCoordinates coord= new XYCoordinates(locations_names);
-		Set<GeoLocation> locations=coord.getLocations();
+		Set<GoogleGeoLocation> locations=coord.getLocations();
 		return createHTMLFile(locations);
 	}
 	
@@ -29,7 +29,7 @@ public class DrawMap implements DrawMapInterface {
 	 * */
 	public boolean drawMapInCountry(Set<String> locations_names, String country){
 		XYCoordinates coord= new XYCoordinates(locations_names, country);
-		Set<GeoLocation> locations=coord.getLocations();
+		Set<GoogleGeoLocation> locations=coord.getLocations();
 		return createHTMLFile(locations);
 	}
 	/*
@@ -39,7 +39,7 @@ public class DrawMap implements DrawMapInterface {
 	 * 			automatically opens the browser to show the map
 	 * 			along with the marker on the given locations 
 	 **/
-	private boolean createHTMLFile(Set<GeoLocation> locations){
+	private boolean createHTMLFile(Set<GoogleGeoLocation> locations){
 		if(locations.isEmpty()) return false;
 		try {
 			Scanner sc = new Scanner(new File("Files/startHtml.html"));
@@ -79,12 +79,12 @@ public class DrawMap implements DrawMapInterface {
 	 * 			on the html file to be opened later
 	 * 			showing the markers on the given locations
 	 */
-	private boolean printInitializationFunction(Set<GeoLocation> locations){
+	private boolean printInitializationFunction(Set<GoogleGeoLocation> locations){
 		try{
 			html.print("\tfunction initialize() {\n");
 			html.print("\t\tlats= new Array(");
 			
-			Iterator<GeoLocation> it= locations.iterator();
+			Iterator<GoogleGeoLocation> it= locations.iterator();
 			html.print(it.next().getX());
 			while(it.hasNext())
 				html.print(", "+it.next().getX());
@@ -92,7 +92,7 @@ public class DrawMap implements DrawMapInterface {
 			
 			html.print("\t\tlngs= new Array(");
 			
-			Iterator<GeoLocation> it2= locations.iterator();
+			Iterator<GoogleGeoLocation> it2= locations.iterator();
 			html.print(it2.next().getY());
 			while(it2.hasNext())
 				html.print(", "+it2.next().getY());
@@ -100,7 +100,7 @@ public class DrawMap implements DrawMapInterface {
 			
 			html.print("\t\tnames= new Array(");
 	
-			Iterator<GeoLocation> it3= locations.iterator();
+			Iterator<GoogleGeoLocation> it3= locations.iterator();
 			html.print("'"+it3.next().getLocation_name()+"'");
 			while(it3.hasNext())
 				html.print(", '"+it3.next().getLocation_name()+"'");

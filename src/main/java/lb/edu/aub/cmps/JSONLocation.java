@@ -5,11 +5,11 @@ public class JSONLocation {
 	private String location_name;
 	private String global_annotation;
 	private String[] local_annotations;
-	private GeoLocation[] geoLocations;
+	private GoogleGeoLocation[] geoLocations;
 	private int weight;
 
 	public JSONLocation(String location_name, String global_nnotation,
-			String[] local_annotations, GeoLocation[] geoLocations, int weight) {
+			String[] local_annotations, GoogleGeoLocation[] geoLocations, int weight) {
 		super();
 		this.location_name = location_name;
 		this.global_annotation = global_nnotation;
@@ -42,11 +42,11 @@ public class JSONLocation {
 		this.local_annotations = local_annotations;
 	}
 
-	public GeoLocation[] getGeoLocations() {
+	public GoogleGeoLocation[] getGeoLocations() {
 		return geoLocations;
 	}
 
-	public void setGeoLocations(GeoLocation[] geoLocations) {
+	public void setGeoLocations(GoogleGeoLocation[] geoLocations) {
 		this.geoLocations = geoLocations;
 	}
 

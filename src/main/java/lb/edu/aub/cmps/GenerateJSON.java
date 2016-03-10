@@ -21,7 +21,7 @@ public class GenerateJSON {
 				// geolocations
 				JSONObject geo_locations_json = new JSONObject();
 				int i = 0;
-				for (GeoLocation geo_location : location.getGeoLocations()) {
+				for (GoogleGeoLocation geo_location : location.getGeoLocations()) {
 					geo_locations_json.put("x", geo_location.getX());
 					geo_locations_json.put("y", geo_location.getY());
 					geo_locations_json

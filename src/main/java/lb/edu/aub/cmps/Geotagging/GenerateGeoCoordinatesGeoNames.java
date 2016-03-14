@@ -23,7 +23,6 @@ public class GenerateGeoCoordinatesGeoNames implements GenerateGeoCoordinates {
 
 		
 		for(String location_name: locations_name){
-			System.out.println(location_name);
 			searchCriteria.setQ(location_name);
 			GeoLocationWithOptions geo_location = new GeoLocationWithOptions(location_name);
 			Set<String> countries = new HashSet<String>();

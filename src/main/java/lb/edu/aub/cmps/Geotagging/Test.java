@@ -25,8 +25,8 @@ public class Test {
 		GenerateGeoCoordinates generate_geo_coordinates = new GenerateGeoCoordinatesGeoNames();
 		GeoLocationWithOptions[] geo_locations_with_options = generate_geo_coordinates.generateGeoLocations(locations_array);
 
-		ExportI export = new ExportToCSV("Outputs\\test.csv");
-		System.out.println("Exporting..");
+		ExportI export = new ExportToCSV("Outputs\\output.csv");
+		System.out.println("Exporting...");
 		export.export(geo_locations_with_options);
 		
 	}

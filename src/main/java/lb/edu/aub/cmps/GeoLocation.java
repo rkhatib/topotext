@@ -6,12 +6,16 @@ public class GeoLocation {
 	private double x; 
 	private double y;
 	private String country;
+	private String annotation;
+	//private String alt_names;
+	
 	public GeoLocation(String location_name, double x, double y, String country) {
 		super();
 		this.location_name = location_name;
 		this.x = x;
 		this.y = y;
 		this.country = country;
+		//this.alt_names = alt_names;
 	}
 	public String getLocation_name() {
 		return location_name;
@@ -41,4 +45,19 @@ public class GeoLocation {
 	public String toString(){
 		return "("+x+", "+y+")  _>  "+country;
 	}
+	public String getAnnotation() {
+		return annotation;
+	}
+	public void setAnnotation(String annotation) {
+		this.annotation = annotation;
+	}
+	
+	/*
+	public String getAlt_names() {
+		return alt_names;
+	}
+	public void setAlt_names(String alt_names) {
+		this.alt_names = alt_names;
+	}
+	*/
 }

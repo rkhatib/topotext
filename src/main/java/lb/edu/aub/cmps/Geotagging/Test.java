@@ -19,15 +19,18 @@ public class Test {
 		int i = 0;
 		for(String loc: locations){
 			locations_array[i] = loc;
+			System.out.println("loc" + loc);
 			i++;
 		}
 		System.out.println("Generating geo coordinates..");
+		long start = System.currentTimeMillis();
 		GenerateGeoCoordinates generate_geo_coordinates = new GenerateGeoCoordinatesGeoNames();
 		GeoLocationWithOptions[] geo_locations_with_options = generate_geo_coordinates.generateGeoLocations(locations_array);
-
+		long end = System.currentTimeMillis();
 		ExportI export = new ExportToCSV("Outputs\\output.csv");
 		System.out.println("Exporting...");
+		System.out.println(geo_locations_with_options.length);
 		export.export(geo_locations_with_options);
-		
+		System.out.println("The time is: " + (end - start)/1000);
 	}
 }

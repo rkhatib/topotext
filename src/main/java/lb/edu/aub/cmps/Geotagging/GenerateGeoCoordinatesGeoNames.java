@@ -1,5 +1,6 @@
 package lb.edu.aub.cmps.Geotagging;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,12 +33,17 @@ public class GenerateGeoCoordinatesGeoNames implements GenerateGeoCoordinates {
 				for (Toponym toponym : searchResult.getToponyms()) {
 					if(!countries.contains(toponym.getCountryName().toLowerCase())){
 						countries.add(toponym.getCountryName().toLowerCase());
-						geo_location.add(location_name, toponym.getLatitude(), toponym.getLongitude(), toponym.getCountryName());
+						//System.out.println(toponym);
+						//toponym.getAlternateNames();
+						System.out.println("toponym--"+toponym.getLatitude());
+						geo_location.add(location_name, toponym.getLatitude(), toponym.getLongitude(), toponym.getCountryName(), toponym.getAlternateNames());
 					}
 					
 				}
 				geo_locations.add(geo_location);
+				System.out.println("notttttttt exceptionnnnnnnnnnnn");
 			} catch (Exception e) {
+				System.out.println("exeptionnnnnnnnnnnnnn");
 				// TODO Auto-generated catch block
 				geo_locations.add(null);
 			}
@@ -47,6 +53,7 @@ public class GenerateGeoCoordinatesGeoNames implements GenerateGeoCoordinates {
 		for(GeoLocationWithOptions loc: geo_locations){
 			geo_locations_array[i] = loc; i++;
 		}
+		System.out.println(">>>>>>>>>>>>>>>>>>>"+Arrays.toString(geo_locations_array));
 		return geo_locations_array;
 	}
 }

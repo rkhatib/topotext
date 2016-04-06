@@ -19,7 +19,6 @@ public class Test {
 		int i = 0;
 		for(String loc: locations){
 			locations_array[i] = loc;
-			System.out.println("loc" + loc);
 			i++;
 		}
 		System.out.println("Generating geo coordinates..");

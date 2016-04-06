@@ -29,7 +29,6 @@ public class GeoLocationWithOptions {
 	}
 
 	public void add(String name, double x, double y, String coutry, String alt_names){
-		System.out.println(name +" -- ");
 		this.geoLocations.add(new GeoLocation(name, x, y, coutry));
 	}
 }

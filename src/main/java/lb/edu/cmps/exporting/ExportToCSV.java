@@ -18,7 +18,6 @@ public class ExportToCSV implements ExportI {
 		try {
 			writer = new FileWriter(csv_name);
 		} catch (IOException e) {
-			System.out.println("The file is not found");
 		}
 		
 	}
@@ -29,28 +28,21 @@ public class ExportToCSV implements ExportI {
 		writer.append("X,");
 		writer.append("Y,");
 		writer.append("Alternative name");
-		writer.append("Annotations\n");
-		
+		Set<String> countries = new HashSet<String>();
+
 		for(GeoLocationWithOptions loc: locations){
-			Set<String> countries = new HashSet<String>();
 			if(loc != null){
 				String name = loc.getLocation_name();
-				System.out.println(",,,,"+name+",,,"+loc.getGeoLocations());
 				for(GeoLocation l: loc.getGeoLocations()){
-					System.out.println(l.getCountry());
 					if(!countries.contains(l.getCountry().toLowerCase())){
 						countries.add(l.getCountry().toLowerCase());
 						writer.append(name + ",");
-						System.out.println("........." + name);
 						writer.append(l.getCountry()+",");
 						writer.append(l.getX()+",");
 						writer.append(l.getY()+"\n");
-						//writer.append(l.getAlt_names());
-						//writer.append(l.ge)
 					}
 					
 				}
-				System.out.println();
 			}
 		}
 		writer.flush();

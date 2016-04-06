@@ -10,14 +10,14 @@ import lb.edu.aub.cmps.importing.ImportFromCSV;
 
 public class LeafletMap implements GenerateMap{
 
-	public void generateMap(String path, List<GeoLocation> locs) throws FileNotFoundException {
+	public void generateMap(String path, List<GeoLocation> locs, String title) throws FileNotFoundException {
 		PrintStream out = new PrintStream(new File(path));
 		
 		//head
-		String head = "<!DOCTYPE html><html><head><title>Leaflet Quick Start Guide Example</title>\n " +
-				"<meta charset=\"utf-8\" />	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
+		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
+				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
 				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
-				"\n</head><body>"+"	<div id=\"map\" style=\"width: 1400px; height: 600px\"></div>"+
+				"\n</head>\n<body>\n"+"	<div id=\"map\" style=\"width: 1400px; height: 600px\"></div>"+
 				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
 				"\n<script>"+
 				"\nvar map = L.map(\'map\').setView([51.505, -0.09], 2);"+
@@ -50,7 +50,7 @@ public class LeafletMap implements GenerateMap{
 		System.out.println(geolocs.size());
 		LeafletMap map = new LeafletMap();
 		String path = "C:\\Users\\Lenovo\\Julia\\topo text\\testmap.html";
-		map.generateMap(path, geolocs);
+		map.generateMap(path, geolocs, "Your Map");
 	}
 	
 }

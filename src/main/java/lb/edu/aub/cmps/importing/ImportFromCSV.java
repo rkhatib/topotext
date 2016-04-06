@@ -19,11 +19,16 @@ public class ImportFromCSV implements ImportFromCSVI {
 		scan.nextLine();
 		
 		while(scan.hasNextLine()){
-			String locname = scan.next();
+			String line = scan.nextLine();
+			String[] parts = line.split(",");
+			String locname = parts[0];
 			if(!locset.contains(locname)){
-				GeoLocation geoloc= new GeoLocation(locname, Double.parseDouble(scan.next()), Double.parseDouble(scan.next()), scan.next());
-				geoloc.setAnnotation(scan.next());
-				locset.add(locname);
+				try{
+					GeoLocation geoloc= new GeoLocation(locname, Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[1]);
+					geoloc.setAnnotation(parts[4]);
+					locset.add(locname);
+					locs.add(geoloc);
+					}catch(IndexOutOfBoundsException e){}
 			}
 			
 		}
@@ -31,4 +36,8 @@ public class ImportFromCSV implements ImportFromCSVI {
 		return locs;
 	}
 
+	public static void main(String[] args) throws FileNotFoundException{
+		ImportFromCSV imp = new ImportFromCSV();
+		imp.importGeoLocations("C:\\Users\\Lenovo\\Julia\\topo text\\output-all-countries.csv");
+	}
 }

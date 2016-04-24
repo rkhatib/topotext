@@ -1,1 +1,221 @@
-Location Name,Country,X,Y,Alternative nameAnnotations
+Location Name,Country,X,Y,weights,Annotation
+Franklin,United States,39.96118,-82.99879,5,1
+Franklin,New Zealand,-37.16667,175,5,1
+Franklin,Antarctica,-76.08333,168.31667,5,1
+Franklin,Australia,-33.60164,136.94148,5,1
+Franklin,Canada,45.04682,-73.90047,5,1
+England,United Kingdom,51.50853,-0.12574,27,1
+England,Jamaica,17.99358,-77.46606,27,1
+Neptune,Israel,29.54976,34.9563,1,1
+Neptune,Papua New Guinea,-4.49477,145.45542,1,1
+Neptune,Trinidad and Tobago,10.83333,-60.9,1,1
+Neptune,French Guiana,4.05874,-53.08874,1,1
+Neptune,Haiti,18.66667,-71.86667,1,1
+Neptune,Philippines,14.67821,121.11774,1,1
+Neptune,South Africa,-34.34607,18.4616,1,1
+Neptune,Italy,40.56667,8.15,1,1
+Neptune,Sri Lanka,7.2833,80.3,1,1
+Neptune,France,43.69382,7.25784,1,1
+Neptune,Zimbabwe,-17.72539,31.45192,1,1
+Neptune,Tanzania,-5.923,39.36,1,1
+Neptune,Senegal,14.43808,-17.00579,1,1
+Neptune,Russia,59.93904,30.31578,1,1
+Neptune,Chile,-44.47308,-71.6398,1,1
+Neptune,Greece,36.84854,27.0794,1,1
+Pa,Mexico,19.35738,-99.0671,125,1
+Pa,Peru,-16.39889,-71.535,125,1
+Pa,Uganda,0.31628,32.58219,125,1
+Pa,Honduras,14.0818,-87.20681,125,1
+Pa,Suriname,5.86638,-55.16682,125,1
+Pa,American Samoa,-14.27806,-170.7025,125,1
+Pa,Brazil,-1.45583,-48.50444,125,1
+Pa,Norfolk Island,-29.05459,167.96628,125,1
+Pa,Isle of Man,54.15,-4.48333,125,1
+Pa,Seychelles,-4.61667,55.45,125,1
+Pa,Lithuania,55.73333,24.35,125,1
+Pa,Latvia,56.51667,21.01667,125,1
+Pa,French Polynesia,-17.53733,-149.5665,125,1
+Pa,Aruba,12.52398,-70.02703,125,1
+Pa,Bahamas,25.05823,-77.34306,125,1
+Pa,Panama,9.05032,-79.47068,125,1
+Pa,Vietnam,22.34023,103.84415,125,1
+Pa,Thailand,19.50643,99.97615,125,1
+Pa,Iran,27.27604,53.721,125,1
+Pa,China,43.96667,116.03333,125,1
+Pa,Mauritius,-20.05472,57.54528,125,1
+Pa,Nicaragua,12.92559,-85.91747,125,1
+Pa,Spain,39.46975,-0.37739,125,1
+Pa,Saint Helena,-7.93333,-14.41667,125,1
+Pa,Pakistan,30,70,125,1
+Pa,Cyprus,35.33634,33.31729,125,1
+Pa,U.S. Virgin Islands,18.3419,-64.9307,125,1
+Pa,Cayman Islands,19.2866,-81.37436,125,1
+Pa,Bermuda,32.2949,-64.78303,125,1
+Pa,Taiwan,24.07699,120.64222,125,1
+Pa,Myanmar [Burma],24.0793,97.17752,125,1
+Pa,Togo,6.9,0.63333,125,1
+Pa,Benin,9.33716,2.63031,125,1
+Pa,Zambia,-13.63333,32.65,125,1
+Pa,Uruguay,-32.32139,-58.07556,125,1
+Pa,Czech Republic,50.04075,15.77659,125,1
+Pa,Paraguay,-23.33333,-58,125,1
+Beauregard,Martinique,14.6,-60.9,5,1
+Beauregard,Guadeloupe,16.12254,-61.61588,5,1
+Beauregard,Guernsey,49.43028,-2.36944,5,1
+Beauregard,Grenada,12.11293,-61.67625,5,1
+Dalton,Greenland,69.41667,-24.1,24,1
+Dalton,Ireland,53.51667,-7.51667,24,1
+Providence,Marshall Islands,9.81648,160.91434,2,1
+Providence,Liberia,6.31667,-10.8,2,1
+Spartan,Kazakhstan,51.43521,52.08245,1,1
+California,Colombia,7.3434,-72.95815,2,1
+Wilkes,Kiribati,2.05945,173.27484,263,1
+Georgia,Georgia,41.99998,43.4999,130,1
+Georgia,South Georgia and the South Sandwich Islands,-56,-33,130,1
+Georgia,Solomon Islands,-8.22975,157.58188,130,1
+Georgia,Romania,45.03655,28.45947,130,1
+Nassau,Netherlands,51.4475,4.92917,10,1
+Nassau,Cook Islands,-11.55,-165.41667,10,1
+Nassau,Guyana,5.7583,-57.65743,10,1
+Cochin,India,9.93988,76.26022,1,1
+Mimosa,Malawi,-16.08151,35.58443,13,1
+Mimosa,Argentina,-34.8726,-65.09751,13,1
+Mimosa,Democratic Republic of the Congo,-4.32878,15.22757,13,1
+Mimosa,Kenya,-1.21448,36.8034,13,1
+Mimosa,Croatia,45.08067,14.15244,13,1
+Mimosa,Saint Pierre and Miquelon,46.77639,-56.175,13,1
+Mimosa,Portugal,37.28333,-7.71667,13,1
+Mimosa,Algeria,36.90286,7.75554,13,1
+Mimosa,Bulgaria,43.2839,28.04078,13,1
+Mimosa,Malaysia,2.19915,102.25162,13,1
+Resaca,Dominican Republic,18.73333,-71.01667,7,1
+Resaca,Puerto Rico,18.33551,-65.29127,7,1
+Resaca,Bolivia,-10.16667,-66.95,7,1
+Resaca,Cuba,22.05383,-82.87251,7,1
+Resaca,Venezuela,8.06284,-69.26517,7,1
+Havana,Turkey,37.13697,38.17086,2,1
+Carolinas,Northern Mariana Islands,14.96655,145.64914,4,1
+Carolinas,Micronesia,7.2099,147.94189,4,1
+Carolinas,Guatemala,14.15,-90.88333,4,1
+Ind.,Norway,63.37409,8.52891,1,1
+Ind.,Mozambique,-21.81639,35.18028,1,1
+Ind.,Serbia,45.04816,20.08165,1,1
+Ind.,Yemen,13.21056,44.785,1,1
+Ind.,Lebanon,33.9925,35.75694,1,1
+Ind.,United Arab Emirates,25.17804,55.35012,1,1
+Ind.,Iraq,33.27575,40.86337,1,1
+Ind.,Switzerland,46.54125,6.83153,1,1
+Cuba,Azerbaijan,41.36108,48.51341,3,1
+Cuba,Japan,34.6913,135.183,3,1
+Cuba,Turkmenistan,40.03792,52.94313,3,1
+Cuba,Nigeria,10.09833,12.00186,3,1
+Cuba,East Timor,-9.31286,125.25648,3,1
+Cuba,Uzbekistan,38.77892,66.44724,3,1
+Cuba,Curacao,12.33333,-69.06667,3,1
+Cuba,Indonesia,-0.83383,127.76818,3,1
+Cuba,Eritrea,16.3406,39.2007,3,1
+Belle,Saint Kitts and Nevis,17.37001,-62.86321,97,1
+Belle,Jersey,49.255,-2.10083,97,1
+Belle,Saint Lucia,13.81833,-61.02742,97,1
+Belle,Madagascar,-13.36945,48.19161,97,1
+Belle,Niger,13.6008,2.9438,97,1
+Belle,Dominica,15.41667,-61.26667,97,1
+Belle,New Caledonia,-21.23333,164.9,97,1
+Belle,Réunion,-21.07844,55.27461,97,1
+Belle,French Southern Territories,-49.24295,69.73488,97,1
+Belle,British Virgin Islands,18.45,-64.73333,97,1
+Ga.,Gabon,-1,11.75,1,1
+Ga.,Hong Kong,22.28552,114.15769,1,1
+Ga.,Guinea-Bissau,12.28,-14.22222,1,1
+Ga.,Jordan,31,36,1,1
+Ga.,Ghana,5.73333,-0.2,1,1
+Ga.,Antigua and Barbuda,17.05,-61.8,1,1
+Ga.,Afghanistan,32.35438,61.4184,1,1
+Ga.,Syria,37.12147,42.13455,1,1
+Ga.,Hungary,47,20,1,1
+Ga.,Nepal,27.70314,88.14739,1,1
+West Point,Falkland Islands,-52.2,-59.31667,3,1
+West Point,Cameroon,4.06787,9.01557,3,1
+West Point,Vanuatu,-16.5,167.41667,3,1
+West Point,Sierra Leone,7.91694,-12.95952,3,1
+West Point,Fiji,-18.6,179.83333,3,1
+West Point,Singapore,1.29,103.76917,3,1
+West Point,Christmas Island,-10.44303,105.55291,3,1
+West Point,Bangladesh,21.71667,89.4,3,1
+West Point,Anguilla,18.26667,-62.95,3,1
+West Point,Palau,7.34155,134.42835,3,1
+Philadelphia,Costa Rica,9.86667,-83.01667,2,1
+Philadelphia,Egypt,29.48333,31.06667,2,1
+Central America,El Salvador,13.48333,-88.18333,1,1
+Central America,Belize,18.08124,-88.56328,1,1
+Rome,Belgium,50.83333,4.21667,4,1
+North,Botswana,-21.16995,27.50787,83,1
+North,Gambia,13.35222,-16.43389,83,1
+North,North Korea,41.79556,129.77583,83,1
+North,Denmark,57,9.66667,83,1
+North,South Korea,35.82194,127.14889,83,1
+North,Somalia,9.56,44.065,83,1
+North,Maldives,6.15091,73.29013,83,1
+North,Guam,13.481,144.7335,83,1
+North,Oman,24.35022,56.70765,83,1
+North,Sudan,13.18421,30.21669,83,1
+Marietta,Malta,36.02222,14.22833,14,1
+Pork,Cambodia,13.95,103,170,1
+Richmond,Saint Vincent and the Grenadines,13.28333,-61.25,16,1
+Haiti,Ethiopia,11.2,35.35,3,1
+Haiti,Ukraine,52.2385,32.40328,3,1
+Haiti,Germany,50.97221,13.86741,3,1
+Haiti,Saudi Arabia,27.51432,41.08844,3,1
+Mountain,Bonaire,17.63889,-63.24209,26,1
+Mountain,Swaziland,-25.921,31.12736,26,1
+Mountain,Lesotho,-28.68872,28.51766,26,1
+Mountain,Tajikistan,39.05681,72.00874,26,1
+Mountain,Kosovo,42.13972,20.97972,26,1
+Mountain,Montenegro,43.12792,19.03411,26,1
+Mountain,Bosnia and Herzegovina,43.27361,18.66556,26,1
+Mountain,Bhutan,28.06418,90.44353,26,1
+Mountain,Iceland,64.79649,-15.55904,26,1
+Mountain,Heard Island and McDonald Islands,-53.10833,73.525,26,1
+Mountain,Namibia,-21.13333,14.58333,26,1
+China,Kyrgyzstan,39.3335,72.91626,18,1
+China,Mongolia,48.94596,99.53665,18,1
+China,Macao,22.20056,113.54611,18,1
+China,Albania,41.73056,20.2975,18,1
+China,Chad,17.67673,20.84694,18,1
+Miss.,Slovenia,46.5875,15.02222,1,1
+Miss.,Kuwait,29.34618,48.08492,1,1
+Miss.,Sweden,59.33769,18.06159,1,1
+Atlanta Hotel,Austria,48.22,16.356,4,1
+Buena Vista,Gibraltar,36.11667,-5.33333,2,1
+Savannah,Barbados,13.25,-59.55,55,1
+Macom,Equatorial Guinea,1.65013,11.33635,5,1
+Yankee,Turks and Caicos Islands,21.65,-72.46667,234,1
+India,British Indian Ocean Territory,-6,72,170,1
+India,,12.11721,-68.91964,170,1
+moon,Estonia,58.5825,23.2525,12,1
+United States,U.S. Minor Outlying Islands,5.875,-162.057,9,1
+United States,Belarus,53.8417,26.4976,9,1
+United States,Western Sahara,24.45,-13.1,9,1
+United States,Macedonia,41.80917,21.03167,9,1
+United States,Laos,18,105,9,1
+Tara,Mali,16.17065,-3.91001,513,1
+Tara,Morocco,35.28981,-4.86857,513,1
+Augusta,São Tomé and Príncipe,0.11667,6.63333,8,1
+Augusta,Poland,53.35099,22.90648,8,1
+Augusta,Tonga,-21.06667,-175.18333,8,1
+South,Ecuador,-0.22985,-78.52495,149,1
+Switzerland,Luxembourg,49.83333,6.33333,1,1
+Europe,Andorra,42.53474,1.58014,17,1
+Europe,Liechtenstein,47.16498,9.50867,17,1
+Europe,Monaco,43.73333,7.41667,17,1
+Europe,Moldova,46.83156,29.47769,17,1
+Europe,San Marino,43.96897,12.48167,17,1
+Europe,Vatican City,41.90236,12.45332,17,1
+Europe,Faroe Islands,62.15639,-7.16639,17,1
+Europe,Åland,60.09726,19.93481,17,1
+Europe,Slovakia,48.30763,18.08453,17,1
+Egypt,Libya,30.75545,20.22625,2,1
+Egypt,Ivory Coast,8.08759,-6.51255,2,1
+France,Saint Martin,18.08216,-63.04282,6,1
+West,Cocos [Keeling] Islands,-12.15681,96.82251,23,1
+West,Palestine,32.22111,35.25444,23,1

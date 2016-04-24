@@ -27,7 +27,8 @@ public class ExportToCSV implements ExportI {
 		writer.append("Country,");
 		writer.append("X,");
 		writer.append("Y,");
-		writer.append("Alternative name");
+		writer.append("weights,");
+		writer.append("Annotation\n");
 		Set<String> countries = new HashSet<String>();
 
 		for(GeoLocationWithOptions loc: locations){
@@ -39,7 +40,8 @@ public class ExportToCSV implements ExportI {
 						writer.append(name + ",");
 						writer.append(l.getCountry()+",");
 						writer.append(l.getX()+",");
-						writer.append(l.getY()+"\n");
+						writer.append(l.getY()+",");
+						writer.append(l.getWeight()+"\n");
 					}
 					
 				}

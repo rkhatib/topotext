@@ -7,14 +7,16 @@ public class GeoLocation {
 	private double y;
 	private String country;
 	private String annotation;
+	private int weight;
 	//private String alt_names;
 	
-	public GeoLocation(String location_name, double x, double y, String country) {
+	public GeoLocation(String location_name, double x, double y, String country, int weight) {
 		super();
 		this.location_name = location_name;
 		this.x = x;
 		this.y = y;
 		this.country = country;
+		this.weight = weight;
 		//this.alt_names = alt_names;
 	}
 	public String getLocation_name() {
@@ -51,7 +53,14 @@ public class GeoLocation {
 	public void setAnnotation(String annotation) {
 		this.annotation = annotation;
 	}
-	
+	public int getWeight(){
+		return (weight == 0)? 1: weight;
+		
+		
+	}
+	public void setWeight(int weight){
+		this.weight = weight;
+	}
 	/*
 	public String getAlt_names() {
 		return alt_names;

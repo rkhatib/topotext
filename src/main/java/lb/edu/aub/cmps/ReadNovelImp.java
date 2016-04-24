@@ -70,6 +70,7 @@ public class ReadNovelImp implements ReadNovelInterface {
 
 	}
 
+	
 	/*
 	 * requires: fileName not null effects: fills a map with the location in the
 	 * string with their indices
@@ -144,4 +145,12 @@ public class ReadNovelImp implements ReadNovelInterface {
 		return locations;
 	}
 
+	public HashMap<String, Integer> getLocationsWithWeights(){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		getLocationsWithIndeces();
+		for(String loc : this.locationIndices.keySet()){
+			map.put(loc, this.locationIndices.get(loc).size());
+		}
+		return map;
+	}
 }

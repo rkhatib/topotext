@@ -15,4 +15,6 @@ public interface ReadNovelInterface {
 	 * returns: locations: HashMap of keyset locations and values list of indices.
 	 */
 	public Set<String> getLocations();
+	
+	public HashMap<String, Integer> getLocationsWithWeights();
 }

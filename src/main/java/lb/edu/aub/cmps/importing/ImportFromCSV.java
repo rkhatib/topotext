@@ -24,15 +24,17 @@ public class ImportFromCSV implements ImportFromCSVI {
 			String locname = parts[0];
 			if(!locset.contains(locname)){
 				try{
-					GeoLocation geoloc= new GeoLocation(locname, Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[1]);
-					geoloc.setAnnotation(parts[4]);
+					GeoLocation geoloc= new GeoLocation(locname, Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[1], Integer.parseInt(parts[4]));
+					geoloc.setAnnotation(parts[5]);
 					locset.add(locname);
 					locs.add(geoloc);
-					}catch(IndexOutOfBoundsException e){}
+					System.out.println("added");
+					}catch(IndexOutOfBoundsException e){ e.printStackTrace();}
 			}
 			
 		}
-		scan.close();	
+		scan.close();
+		System.out.println("...." +locs.size());
 		return locs;
 	}
 

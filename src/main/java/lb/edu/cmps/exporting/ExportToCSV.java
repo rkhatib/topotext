@@ -27,7 +27,7 @@ public class ExportToCSV implements ExportI {
 		writer.append("Country,");
 		writer.append("X,");
 		writer.append("Y,");
-		writer.append("weights,");
+		writer.append("Weight,");
 		writer.append("Annotation\n");
 		Set<String> countries = new HashSet<String>();
 

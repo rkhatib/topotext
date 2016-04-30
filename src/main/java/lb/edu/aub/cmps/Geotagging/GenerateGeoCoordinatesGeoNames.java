@@ -33,7 +33,6 @@ public class GenerateGeoCoordinatesGeoNames implements GenerateGeoCoordinates {
 			try {
 				searchResult = WebService.search(searchCriteria);
 				for (Toponym toponym : searchResult.getToponyms()) {
-					System.out.println(toponym.getCountryName() == null);
 					if(toponym != null && toponym.getCountryName()!= null && !countries.contains(toponym.getCountryName().toLowerCase())){
 						countries.add(toponym.getCountryName().toLowerCase());
 						geo_location.add(location_name, toponym.getLatitude(), toponym.getLongitude(), toponym.getCountryName(), "",name_weight_map.get(location_name));

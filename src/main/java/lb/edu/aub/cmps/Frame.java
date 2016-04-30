@@ -1,33 +1,51 @@
 package lb.edu.aub.cmps;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Highlighter;
-import javax.swing.text.JTextComponent;
 import java.awt.Color;
 import java.awt.Desktop;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.awt.Font;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
+
+import lb.edu.aub.cmps.Geotagging.GenerateGeoCoordinates;
+import lb.edu.aub.cmps.Geotagging.GenerateGeoCoordinatesGeoNames;
+import lb.edu.aub.cmps.importing.ImportFromCSV;
+import lb.edu.aub.cmps.importing.ImportFromCSVI;
+import lb.edu.aub.cmps.maps.GenerateMap;
+import lb.edu.aub.cmps.maps.LeafletMap;
+import lb.edu.cmps.exporting.ExportI;
+import lb.edu.cmps.exporting.ExportToCSV;
+import edu.stanford.nlp.io.ExtensionFileFilter;
 
 public class Frame extends JFrame {
 	/**
@@ -36,19 +54,19 @@ public class Frame extends JFrame {
 	private String filePath;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField cloudSizeField;
 	JLabel posLabel;
 	JComboBox<String> comboBox;
 	private String chosenLocation;
 	private int size = 0;
 	private int currentLocation = 0;
 	private LinkedList<Integer> wordIndeces;
-
+	private boolean isimp = false;
 	private ReadNovelInterface readNovel;
 	private GenerateWordCloudInteface generateCloud;
 	private PartsOfSpeechInterface pos;
 	private CountFrequency freq;
 
+	private List<GeoLocation> locations2;
 	private LinkedList<Integer> indicesForScroll;
 	private int indexForScroll;
 
@@ -71,7 +89,7 @@ public class Frame extends JFrame {
 		setTitle("Topotext Digital Tool\r\n");
 		pos = new PartsOfSpeechImp();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1200, 470);
+		setBounds(100, 100, 1200, 494);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(241, 230, 140));
 		contentPane.setBackground(new Color(176, 224, 230));
@@ -106,10 +124,7 @@ public class Frame extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					chosenLocation = "" + comboBox.getSelectedItem();
-					if (cloudSizeField.getText().equals(""))
-						size = 0;
-					else
-						size = Integer.parseInt(cloudSizeField.getText());
+					size = 30;
 					wordIndeces = readNovel.getLocationsWithIndeces().get(
 							chosenLocation);
 					currentLocation = wordIndeces.get(0);
@@ -124,6 +139,9 @@ public class Frame extends JFrame {
 			}
 		});
 
+		final JCheckBox chkbox = new JCheckBox("New check box");
+		chkbox.setBounds(1011, 364, 22, 16);
+		contentPane.add(chkbox);
 		final JScrollPane scrollArea = new JScrollPane();
 		scrollArea.setViewportBorder(new TitledBorder(null, "",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
@@ -142,11 +160,6 @@ public class Frame extends JFrame {
 				Font.PLAIN, 18));
 		lblCloudSize.setBounds(857, 164, 146, 20);
 		contentPane.add(lblCloudSize);
-
-		cloudSizeField = new JTextField();
-		cloudSizeField.setBounds(1009, 167, 126, 20);
-		contentPane.add(cloudSizeField);
-		cloudSizeField.setColumns(10);
 
 		final JButton btnPrevious = new JButton("Previous");
 		btnPrevious.setEnabled(false);
@@ -236,21 +249,11 @@ public class Frame extends JFrame {
 									"Please select a location before",
 									"Received Message",
 									JOptionPane.INFORMATION_MESSAGE);
-				} else if (cloudSizeField.getText().equals("0")
-						|| cloudSizeField.getText().equals(" "))
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"Please provide a distance for the cloud before",
-									"Received Message",
-									JOptionPane.INFORMATION_MESSAGE);
-
-				else {
+				} else {
 					try {
-						size = Integer.parseInt(cloudSizeField.getText());
+						size = 30;
 						LinkedList<String> words = returnWords(textArea,
-								currentLocation,
-								Integer.parseInt(cloudSizeField.getText()));
+								currentLocation, 30);
 
 						LinkedList<String> partsOfSpeech = new LinkedList<String>();
 
@@ -275,8 +278,7 @@ public class Frame extends JFrame {
 
 						}
 						LinkedList<String> neededWords = returnWords(textArea,
-								currentLocation,
-								Integer.parseInt(cloudSizeField.getText()));
+								currentLocation, 30);
 
 						if (countParts == 0) {
 							LinkedList<String> fullParts = new LinkedList<String>();
@@ -332,28 +334,65 @@ public class Frame extends JFrame {
 		btnMap.setEnabled(false);
 		btnMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DrawMapInterface drawMap = new DrawMap();
-				if ((countries_comboBox.getSelectedItem())
-						.equals("Select Country")) {
-					boolean done = drawMap.drawMap(locations);
-					if (!done)
-						JOptionPane.showMessageDialog(null,
-								"Error occured while drawing the map",
-								"Received Message",
-								JOptionPane.INFORMATION_MESSAGE);
 
-				} else {
-					boolean done = drawMap.drawMapInCountry(locations,
-							(String) countries_comboBox.getSelectedItem());
-					if (!done)
-						JOptionPane
-								.showMessageDialog(
-										null,
-										"Error occured while drawing the Map\nThe country you selected has no locations in this text",
-										"Received Message",
-										JOptionPane.INFORMATION_MESSAGE);
-
+				if (!isimp && locations2 == null) {
+					
+					GenerateGeoCoordinates geocoord = new GenerateGeoCoordinatesGeoNames();
+					GeoLocationWithOptions[] locs = geocoord
+							.generateGeoLocations(readNovel
+									.getLocationsWithWeights());
+					locations2 = new LinkedList<GeoLocation>();
+					for (GeoLocationWithOptions loc : locs) {
+						if (loc.getGeoLocations().size() > 0)
+							locations2.add(loc.getGeoLocations().get(0));
+					}
 				}
+				JFileChooser fileChooser = new JFileChooser();
+				String SAVE_AS = ".html";
+				ExtensionFileFilter pFilter = new ExtensionFileFilter(SAVE_AS);
+				fileChooser.setFileFilter(pFilter);
+				int status = fileChooser.showSaveDialog(null);
+
+				if (status == JFileChooser.APPROVE_OPTION) {
+					File f = fileChooser.getSelectedFile();
+
+					String fileName = f.getAbsolutePath();
+					if (!fileName.endsWith(SAVE_AS)) {
+						f = new File(fileName + SAVE_AS);
+					}
+					System.out.println(f.getAbsolutePath());
+					GenerateMap generateMap = new LeafletMap();
+					try {
+						if (chkbox.isSelected())
+							generateMap.generateMapWithWeights(
+									f.getAbsolutePath(), locations2,
+									"Locations Map");
+						else
+							generateMap.generateMap(f.getAbsolutePath(),
+									locations2, "Locations Map");
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
+
+				/*
+				 * DrawMapInterface drawMap = new DrawMap(); if
+				 * ((countries_comboBox.getSelectedItem())
+				 * .equals("Select Country")) { boolean done =
+				 * drawMap.drawMap(locations); if (!done)
+				 * JOptionPane.showMessageDialog(null,
+				 * "Error occured while drawing the map", "Received Message",
+				 * JOptionPane.INFORMATION_MESSAGE);
+				 * 
+				 * } else { boolean done = drawMap.drawMapInCountry(locations,
+				 * (String) countries_comboBox.getSelectedItem()); if (!done)
+				 * JOptionPane .showMessageDialog( null,
+				 * "Error occured while drawing the Map\nThe country you selected has no locations in this text"
+				 * , "Received Message", JOptionPane.INFORMATION_MESSAGE);
+				 * 
+				 * }
+				 */
+
 			}
 		});
 		btnMap.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
@@ -363,7 +402,6 @@ public class Frame extends JFrame {
 		JButton btnBrowse = new JButton("Browse");
 		btnBrowse.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN,
 				14));
-
 		final JLabel progressLabel = new JLabel("");
 		progressLabel.setBounds(857, 41, 266, 36);
 		contentPane.add(progressLabel);
@@ -372,8 +410,7 @@ public class Frame extends JFrame {
 				"Generate Global Word Cloud");
 		btnGenerateGlobalWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String toCloud = generateGlobalCloud(textArea, wordIndeces,
-						Integer.parseInt(cloudSizeField.getText()));
+				String toCloud = generateGlobalCloud(textArea, wordIndeces, 30);
 				generateCloud = new GenerateWordCloud(toCloud);
 				generateCloud.generateWordCloud(new File("Files/cloud.html"));
 			}
@@ -383,6 +420,47 @@ public class Frame extends JFrame {
 				Font.PLAIN, 14));
 		btnGenerateGlobalWord.setBounds(857, 304, 278, 23);
 		contentPane.add(btnGenerateGlobalWord);
+
+		final JButton export = new JButton("Export");
+		export.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser = new JFileChooser();
+				String SAVE_AS = ".csv";
+				ExtensionFileFilter pFilter = new ExtensionFileFilter(SAVE_AS);
+				fileChooser.setFileFilter(pFilter);
+				int status = fileChooser.showSaveDialog(null);
+
+				if (status == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+
+					String fileName = selectedFile.getAbsolutePath();
+					if (!fileName.endsWith(SAVE_AS)) {
+						selectedFile = new File(fileName + SAVE_AS);
+					}
+					HashMap<String, Integer> locations_array = readNovel
+							.getLocationsWithWeights();
+					System.out.println("Generating geo coordinates..");
+					long start = System.currentTimeMillis();
+					GenerateGeoCoordinates generate_geo_coordinates = new GenerateGeoCoordinatesGeoNames();
+					GeoLocationWithOptions[] geo_locations_with_options = generate_geo_coordinates
+							.generateGeoLocations(locations_array);
+					long end = System.currentTimeMillis();
+					ExportI export = new ExportToCSV(fileName);
+					System.out.println("Exporting...");
+					try {
+						export.export(geo_locations_with_options);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					System.out.println("The time is: " + (end - start) / 1000);
+				}
+
+			}
+		});
+		export.setEnabled(false);
+		export.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
+		export.setBounds(1013, 401, 122, 23);
+		contentPane.add(export);
 
 		final JLabel pathLabel = new JLabel("");
 		pathLabel.setBounds(216, 391, 295, 23);
@@ -415,6 +493,8 @@ public class Frame extends JFrame {
 					chckbxAdjective.setEnabled(true);
 					chckbxNoun.setEnabled(true);
 					filePath = chooser.getSelectedFile().getPath();
+					export.setEnabled(true);
+
 					pathLabel.setText(filePath.toString());
 					File file = new File(filePath);
 
@@ -475,6 +555,55 @@ public class Frame extends JFrame {
 		btnHelp.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
 		btnHelp.setBounds(1095, 0, 89, 23);
 		contentPane.add(btnHelp);
+
+		final JLabel importName = new JLabel("");
+		importName.setBounds(216, 425, 295, 23);
+		contentPane.add(importName);
+
+		JButton btn_import = new JButton("Import");
+		btn_import.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				isimp = true;
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+						"CSV File", "CSV");
+				chooser.setFileFilter(filter);
+				chooser.addChoosableFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(null);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					comboBox.setEnabled(true);
+					btnMap.setEnabled(true);
+					importName.setText(chooser.getSelectedFile().getPath());
+					ImportFromCSVI import_from_csv = new ImportFromCSV();
+					try {
+						locations2 = import_from_csv
+								.importGeoLocations(importName.getText());
+
+						String[] locationsArray = new String[locations2.size() + 1];
+						locationsArray[0] = "Locations";
+						int i = 1;
+						for (GeoLocation loc : locations2) {
+							locationsArray[i] = loc.getLocation_name();
+							i++;
+						}
+						comboBox.setModel(new DefaultComboBoxModel<String>(
+								locationsArray));
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+		});
+		btn_import.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN,
+				14));
+		btn_import.setBounds(21, 425, 185, 23);
+		contentPane.add(btn_import);
+
+		JLabel lblShowWeights = new JLabel("Show Weights");
+		lblShowWeights.setBounds(1039, 365, 96, 14);
+		contentPane.add(lblShowWeights);
+
 	}
 
 	public void highlightLocation(JTextComponent textComp, String location) {
@@ -496,17 +625,14 @@ public class Frame extends JFrame {
 						locationHighlighter);
 			}
 
-			if (!cloudSizeField.getText().equals("")) {
+			// if (!cloudSizeField.getText().equals("")) {
 
-				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation,
-						Integer.parseInt(cloudSizeField.getText()));
+			LinkedList<String> words = returnWordsIgnoringUnintersesting(
+					textComp, currentLocation, 30);
 
-				freq = new CountFrequencyImp(words);
+			freq = new CountFrequencyImp(words);
 
-				lblMostFrequentWord
-						.setText("Most Frequent Word: " + freq.MFW());
-			}
+			lblMostFrequentWord.setText("Most Frequent Word: " + freq.MFW());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -683,8 +809,7 @@ public class Frame extends JFrame {
 						size, indexList);
 
 				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation,
-						Integer.parseInt(cloudSizeField.getText()));
+						textComp, currentLocation, 30);
 
 				freq = new CountFrequencyImp(words);
 
@@ -716,17 +841,16 @@ public class Frame extends JFrame {
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
 				highlightWithDistance(textComp, location, indexList.get(index),
-						Integer.parseInt(cloudSizeField.getText()), indexList);
+						30, indexList);
 			} else {
 				index = indexList.size() - 1;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
 				highlightWithDistance(textComp, location, indexList.get(index),
-						Integer.parseInt(cloudSizeField.getText()), indexList);
+						30, indexList);
 
 				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation,
-						Integer.parseInt(cloudSizeField.getText()));
+						textComp, currentLocation, 30);
 
 				freq = new CountFrequencyImp(words);
 

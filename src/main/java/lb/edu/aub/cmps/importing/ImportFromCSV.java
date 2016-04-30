@@ -25,7 +25,10 @@ public class ImportFromCSV implements ImportFromCSVI {
 			if(!locset.contains(locname)){
 				try{
 					GeoLocation geoloc= new GeoLocation(locname, Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), parts[1], Integer.parseInt(parts[4]));
-					geoloc.setAnnotation(parts[5]);
+					if(parts.length > 5)
+						geoloc.setAnnotation(parts[5]);
+					else
+						geoloc.setAnnotation("");
 					locset.add(locname);
 					locs.add(geoloc);
 					System.out.println("added");

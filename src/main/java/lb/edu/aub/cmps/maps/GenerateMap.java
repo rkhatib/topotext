@@ -8,4 +8,5 @@ import lb.edu.aub.cmps.GeoLocation;
 public interface GenerateMap {
 
 	public void generateMap(String path, List<GeoLocation> locs, String title) throws FileNotFoundException;
+	public void generateMapWithWeights(String path, List<GeoLocation> locs, String title) throws FileNotFoundException;
 }

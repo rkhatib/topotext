@@ -33,8 +33,10 @@ public class LeafletMap implements GenerateMap{
 			double x = loc.getX();
 			double y = loc.getY();
 			String anno = loc.getAnnotation();
-			
-			out.print("\nL.marker(["+x+", "+y+"]).addTo(map).bindPopup(\""+anno+"\").openPopup();");
+			if(anno != null && anno.length()!=0)
+				out.print("\nL.marker(["+x+", "+y+"]).addTo(map).bindPopup(\""+anno+"\").openPopup();");
+			else 
+				out.print("\nL.marker([" +x +", "+y+"]).addTo(map);");
 		}
 		String tail = "\n</script>\n</body>\n</html>";
 		out.print(tail);
@@ -68,11 +70,9 @@ public class LeafletMap implements GenerateMap{
 			double y = loc.getY();
 			double w = loc.getWeight();
 			double ratio = w *1.0/ max;
-			double radius = ratio * 500000;
+			double radius = ratio * 1500000;
 			String s = (w ==1)? "": "s";
-			String anno = loc.getAnnotation()+": ("+(int)w+" time"+s+").";
-			System.out.println(loc.getAnnotation());
-			System.out.println(loc.getLocation_name()+" " + radius);
+			String anno = loc.getAnnotation()+" ("+(int)w+" time"+s+").";
 			out.print("\nL.circle(["+x+", "+y+"], " +(radius)+", { color: \'blue\', fillColor : \'#30f\', fillOpacity: 0.3}).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 		}
 		String tail = "\n</script>\n</body>\n</html>";
@@ -84,7 +84,6 @@ public class LeafletMap implements GenerateMap{
 	public static void main(String[] args) throws FileNotFoundException{
 		ImportFromCSV imp = new ImportFromCSV();
 		List<GeoLocation> geolocs = imp.importGeoLocations("Outputs\\output.csv");
-		System.out.println(geolocs.size());
 		LeafletMap map = new LeafletMap();
 		String path = "C:\\Users\\Lenovo\\Julia\\topo text\\testmap.html";
 		map.generateMapWithWeights(path, geolocs, "Your Map");
@@ -98,5 +97,6 @@ public class LeafletMap implements GenerateMap{
 		}
 		return max;
 	}
+	
 	
 }

@@ -48,10 +48,10 @@ public class WelcomeFrame {
 		frmWelcome.getContentPane().setBackground(new Color(176, 224, 230));
 		frmWelcome.getContentPane().setLayout(null);
 		
-		JLabel lblWelcomeToThe = new JLabel("Welcome to the Topotext Digital Tool");
+		JLabel lblWelcomeToThe = new JLabel("TopoText 2.0");
 		lblWelcomeToThe.setForeground(new Color(51, 51, 102));
 		lblWelcomeToThe.setFont(new Font("Adobe Caslon Pro Bold", Font.BOLD, 40));
-		lblWelcomeToThe.setBounds(219, 176, 855, 83);
+		lblWelcomeToThe.setBounds(468, 182, 251, 83);
 		frmWelcome.getContentPane().add(lblWelcomeToThe);
 		
 		JButton btnStartUp = new JButton("Start Up");
@@ -72,7 +72,7 @@ public class WelcomeFrame {
 		});
 		btnStartUp.setForeground(new Color(51, 51, 102));
 		btnStartUp.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 18));
-		btnStartUp.setBounds(517, 299, 150, 35);
+		btnStartUp.setBounds(519, 297, 150, 35);
 		frmWelcome.getContentPane().add(btnStartUp);
 		frmWelcome.setBounds(100, 100, 1200, 475);
 		frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

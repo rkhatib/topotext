@@ -17,8 +17,18 @@ public class LeafletMap implements GenerateMap{
 		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
 				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
 				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
-				"\n</head>\n<body>\n"+"	<div id=\"map\" style=\"width: 1400px; height: 600px\"></div>"+
+				"\n</head>\n<body>\n"+"	<div id=\"map\"></div>"+
 				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
+				"<style>"+
+  "#map {"+
+    "position: fixed;"+
+    "width: 100%;"+
+    "height: 100%;"+
+    "left: 0;"+
+    "top: 0;"+
+    
+  "}"+
+  "</style>"+
 				"\n<script>"+
 				"\nvar map = L.map(\'map\').setView([51.505, -0.09], 2);"+
 				"\n		L.tileLayer(\'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw\', {"+
@@ -33,10 +43,11 @@ public class LeafletMap implements GenerateMap{
 			double x = loc.getX();
 			double y = loc.getY();
 			String anno = loc.getAnnotation();
-			if(anno != null && anno.length()!=0)
+			if (anno == null) anno = "";
+			anno = loc.getLocation_name() +": "+anno;
+			//if(anno != null && anno.length()!=0)
 				out.print("\nL.marker(["+x+", "+y+"]).addTo(map).bindPopup(\""+anno+"\").openPopup();");
-			else 
-				out.print("\nL.marker([" +x +", "+y+"]).addTo(map);");
+			
 		}
 		String tail = "\n</script>\n</body>\n</html>";
 		out.print(tail);
@@ -47,13 +58,22 @@ public class LeafletMap implements GenerateMap{
 
 	public void generateMapWithWeights(String path, List<GeoLocation> locs, String title) throws FileNotFoundException {
 		PrintStream out = new PrintStream(new File(path));
-		
 		//head
 		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
 				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
 				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
 				"\n</head>\n<body>\n"+"	<div id=\"map\" style=\"width: 1400px; height: 600px\"></div>"+
 				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
+				"<style>"+
+  "#map {"+
+    "position: fixed;"+
+    "width: 100%;"+
+    "height: 100%;"+
+    "left: 0;"+
+    "top: 0;"+
+    
+  "}"+
+  "</style>"+
 				"\n<script>"+
 				"\nvar map = L.map(\'map\').setView([51.505, -0.09], 2);"+
 				"\n		L.tileLayer(\'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw\', {"+
@@ -72,7 +92,7 @@ public class LeafletMap implements GenerateMap{
 			double ratio = w *1.0/ max;
 			double radius = ratio * 1500000;
 			String s = (w ==1)? "": "s";
-			String anno = loc.getAnnotation()+" ("+(int)w+" time"+s+").";
+			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+").";
 			out.print("\nL.circle(["+x+", "+y+"], " +(radius)+", { color: \'blue\', fillColor : \'#30f\', fillOpacity: 0.3}).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 		}
 		String tail = "\n</script>\n</body>\n</html>";

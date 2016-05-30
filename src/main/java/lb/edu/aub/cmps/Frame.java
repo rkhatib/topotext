@@ -108,7 +108,7 @@ public class Frame extends JFrame {
 		comboBox.setBounds(857, 88, 278, 20);
 		contentPane.add(comboBox);
 
-		final JButton btnHighlight = new JButton("Highlight Location");
+		final JButton btnHighlight = new JButton("Highlight location");
 		btnHighlight.setEnabled(false);
 		btnHighlight.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 14));
@@ -321,7 +321,7 @@ public class Frame extends JFrame {
 		countries_comboBox.setModel(new DefaultComboBoxModel<String>(
 				WorldCountries.countries()));
 
-		lblMostFrequentWord = new JLabel("Most Frequent Word:");
+		lblMostFrequentWord = new JLabel("Most frequent word:");
 		lblMostFrequentWord.setForeground(new Color(72, 61, 139));
 		lblMostFrequentWord.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 18));
@@ -330,19 +330,18 @@ public class Frame extends JFrame {
 
 		lblMostFrequentWord.setEnabled(false);
 
-		final JButton btnMap = new JButton("Show Map");
+		final JButton btnMap = new JButton("Show map");
 		btnMap.setEnabled(false);
 		btnMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if (!isimp && locations2 == null) {
-					
 					GenerateGeoCoordinates geocoord = new GenerateGeoCoordinatesGeoNames();
 					GeoLocationWithOptions[] locs = geocoord
 							.generateGeoLocations(readNovel
 									.getLocationsWithWeights());
 					locations2 = new LinkedList<GeoLocation>();
 					for (GeoLocationWithOptions loc : locs) {
+						System.out.println("running");
 						if (loc.getGeoLocations().size() > 0)
 							locations2.add(loc.getGeoLocations().get(0));
 					}
@@ -360,7 +359,6 @@ public class Frame extends JFrame {
 					if (!fileName.endsWith(SAVE_AS)) {
 						f = new File(fileName + SAVE_AS);
 					}
-					System.out.println(f.getAbsolutePath());
 					GenerateMap generateMap = new LeafletMap();
 					try {
 						if (chkbox.isSelected())
@@ -407,7 +405,7 @@ public class Frame extends JFrame {
 		contentPane.add(progressLabel);
 
 		final JButton btnGenerateGlobalWord = new JButton(
-				"Generate Global Word Cloud");
+				"Generate global word cloud");
 		btnGenerateGlobalWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String toCloud = generateGlobalCloud(textArea, wordIndeces, 30);
@@ -452,6 +450,7 @@ public class Frame extends JFrame {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					System.out.println("done");
 					System.out.println("The time is: " + (end - start) / 1000);
 				}
 
@@ -533,7 +532,7 @@ public class Frame extends JFrame {
 		btnBrowse.setBounds(21, 391, 185, 23);
 		contentPane.add(btnBrowse);
 
-		JLabel lblPartOfSpeech = new JLabel("Part Of Speech:");
+		JLabel lblPartOfSpeech = new JLabel("Part of speech:");
 		lblPartOfSpeech.setForeground(new Color(72, 61, 139));
 		lblPartOfSpeech.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 16));
@@ -600,7 +599,7 @@ public class Frame extends JFrame {
 		btn_import.setBounds(21, 425, 185, 23);
 		contentPane.add(btn_import);
 
-		JLabel lblShowWeights = new JLabel("Show Weights");
+		JLabel lblShowWeights = new JLabel("Show weights");
 		lblShowWeights.setBounds(1039, 365, 96, 14);
 		contentPane.add(lblShowWeights);
 

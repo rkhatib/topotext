@@ -1,7 +1,6 @@
 package lb.edu.aub.cmps.Geotagging;
 
 import java.util.HashMap;
-import java.util.Set;
 
 import lb.edu.aub.cmps.GeoLocationWithOptions;
 import lb.edu.aub.cmps.ReadNovelImp;
@@ -15,7 +14,7 @@ public class Test {
 		
 		System.out.println("Reading novel...");
 		ReadNovelInterface read_novel = new ReadNovelImp("Jack Kerouac_On the Road.txt");
-		Set<String> locations = read_novel.getLocations();
+		read_novel.getLocations();
 		/*
 		String[] locations_array = new String[locations.size()];
 		int i = 0;

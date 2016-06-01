@@ -1,17 +1,16 @@
 package lb.edu.aub.cmps;
 
+import java.awt.Button;
 import java.awt.EventQueue;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import java.awt.FlowLayout;
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.TextField;
-import java.io.FileNotFoundException;
 
 import lb.edu.aub.cmps.importing.ImportFromCSV;
 import lb.edu.aub.cmps.importing.ImportFromCSVI;

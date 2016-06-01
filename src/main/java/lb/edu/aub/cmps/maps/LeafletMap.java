@@ -62,7 +62,7 @@ public class LeafletMap implements GenerateMap{
 		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
 				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
 				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
-				"\n</head>\n<body>\n"+"	<div id=\"map\" style=\"width: 1400px; height: 600px\"></div>"+
+				"\n</head>\n<body>\n"+"	<div id=\"map\"></div>"+
 				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
 				"<style>"+
   "#map {"+

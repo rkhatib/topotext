@@ -45,6 +45,7 @@ import lb.edu.aub.cmps.maps.LeafletMap;
 import lb.edu.cmps.exporting.ExportI;
 import lb.edu.cmps.exporting.ExportToCSV;
 import edu.stanford.nlp.io.ExtensionFileFilter;
+import javax.swing.JTextField;
 
 public class Frame extends JFrame {
 	/**
@@ -76,6 +77,7 @@ public class Frame extends JFrame {
 
 	final JLabel lblMostFrequentWord;
 	private Set<String> locations;
+	private JTextField txt_fld_dist;
 
 	/**
 	 * Launch the application.
@@ -123,7 +125,13 @@ public class Frame extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					chosenLocation = "" + comboBox.getSelectedItem();
-					size = 30;
+					
+					try{
+						size = Integer.parseInt(txt_fld_dist.getText());
+					}catch(Exception e){
+						size = 30;
+					}
+					
 					wordIndeces = readNovel.getLocationsWithIndeces().get(
 							chosenLocation);
 					currentLocation = wordIndeces.get(0);
@@ -250,9 +258,13 @@ public class Frame extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					try {
-						size = 30;
+						try{
+							size = Integer.parseInt(txt_fld_dist.getText());
+						}catch(Exception e){
+							size = 30;
+						}
 						LinkedList<String> words = returnWords(textArea,
-								currentLocation, 30);
+								currentLocation, size);
 
 						LinkedList<String> partsOfSpeech = new LinkedList<String>();
 
@@ -277,7 +289,7 @@ public class Frame extends JFrame {
 
 						}
 						LinkedList<String> neededWords = returnWords(textArea,
-								currentLocation, 30);
+								currentLocation, size);
 
 						if (countParts == 0) {
 							LinkedList<String> fullParts = new LinkedList<String>();
@@ -407,7 +419,12 @@ public class Frame extends JFrame {
 				"Generate global word cloud");
 		btnGenerateGlobalWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String toCloud = generateGlobalCloud(textArea, wordIndeces, 30);
+				try{
+					size = Integer.parseInt(txt_fld_dist.getText());
+				}catch(Exception e2){
+					size = 30;
+				}
+				String toCloud = generateGlobalCloud(textArea, wordIndeces, size);
 				generateCloud = new GenerateWordCloud(toCloud);
 				generateCloud.generateWordCloud(new File("Files/cloud.html"));
 			}
@@ -601,6 +618,11 @@ public class Frame extends JFrame {
 		JLabel lblShowWeights = new JLabel("Show weights");
 		lblShowWeights.setBounds(1039, 365, 96, 14);
 		contentPane.add(lblShowWeights);
+		
+		txt_fld_dist = new JTextField();
+		txt_fld_dist.setBounds(974, 167, 161, 20);
+		contentPane.add(txt_fld_dist);
+		txt_fld_dist.setColumns(10);
 
 	}
 
@@ -624,9 +646,13 @@ public class Frame extends JFrame {
 			}
 
 			// if (!cloudSizeField.getText().equals("")) {
-
+			try{
+				size = Integer.parseInt(txt_fld_dist.getText());
+			}catch(Exception e){
+				size = 30;
+			}
 			LinkedList<String> words = returnWordsIgnoringUnintersesting(
-					textComp, currentLocation, 30);
+					textComp, currentLocation, size);
 
 			freq = new CountFrequencyImp(words);
 
@@ -803,11 +829,16 @@ public class Frame extends JFrame {
 				index++;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex + 100);
+				try{
+					size = Integer.parseInt(txt_fld_dist.getText());
+				}catch(Exception e){
+					size = 30;
+				}
 				highlightWithDistance(textComp, location, indexList.get(index),
 						size, indexList);
 
 				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation, 30);
+						textComp, currentLocation, size);
 
 				freq = new CountFrequencyImp(words);
 
@@ -838,17 +869,27 @@ public class Frame extends JFrame {
 				index--;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
+				try{
+					size = Integer.parseInt(txt_fld_dist.getText());
+				}catch(Exception e){
+					size = 30;
+				}
 				highlightWithDistance(textComp, location, indexList.get(index),
-						30, indexList);
+						size, indexList);
 			} else {
 				index = indexList.size() - 1;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
+				try{
+					size = Integer.parseInt(txt_fld_dist.getText());
+				}catch(Exception e){
+					size = 30;
+				}
 				highlightWithDistance(textComp, location, indexList.get(index),
-						30, indexList);
+						size, indexList);
 
 				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation, 30);
+						textComp, currentLocation, size);
 
 				freq = new CountFrequencyImp(words);
 

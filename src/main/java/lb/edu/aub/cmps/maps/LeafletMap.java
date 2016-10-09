@@ -84,15 +84,21 @@ public class LeafletMap implements GenerateMap{
 				"\n			id: \'mapbox.streets\'"+
 				"}).addTo(map);";
 		out.print(head);
-		int max = getMaxWeight(locs);
+		//int max = getMaxWeight(locs);
 		for(GeoLocation loc: locs){
 			double x = loc.getX();
 			double y = loc.getY();
 			double w = loc.getWeight();
-			double ratio = w *1.0/ max;
-			double radius = ratio * 1500000;
+			/*
+			//FIXME here
+			double ratio = Math.sqrt(w) *1.0/ Math.sqrt(max);
+			System.out.println(ratio+"----------");
+			double radius = (ratio * ratio)* 1500000;*/
+			double radius = (w *4000 > 700000)? 700000: w*4000;
+			
+			System.out.println(radius);
 			String s = (w ==1)? "": "s";
-			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+").";
+			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+" - radius: "+radius+").";
 			out.print("\nL.circle(["+x+", "+y+"], " +(radius)+", { color: \'blue\', fillColor : \'#30f\', fillOpacity: 0.3}).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 		}
 		String tail = "\n</script>\n</body>\n</html>";
@@ -105,7 +111,7 @@ public class LeafletMap implements GenerateMap{
 		ImportFromCSV imp = new ImportFromCSV();
 		List<GeoLocation> geolocs = imp.importGeoLocations("Outputs\\output.csv");
 		LeafletMap map = new LeafletMap();
-		String path = "C:\\Users\\Lenovo\\Julia\\topo text\\testmap.html";
+		String path = "C:\\Users\\Lenovo\\Desktop\\Julia\\topo text\\testmap.html";
 		map.generateMapWithWeights(path, geolocs, "Your Map");
 	}
 	

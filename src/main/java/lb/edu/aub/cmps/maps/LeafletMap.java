@@ -98,7 +98,7 @@ public class LeafletMap implements GenerateMap{
 			
 			System.out.println(radius);
 			String s = (w ==1)? "": "s";
-			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+" - radius: "+radius+").";
+			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+").";
 			out.print("\nL.circle(["+x+", "+y+"], " +(radius)+", { color: \'blue\', fillColor : \'#30f\', fillOpacity: 0.3}).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 		}
 		String tail = "\n</script>\n</body>\n</html>";

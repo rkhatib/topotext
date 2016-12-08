@@ -1,0 +1,10 @@
+1-Browse and select a .txt file
+2-once the location are loaded you can select a location from the drop-down menu of locations
+and highlight its occurrences with words around it. (The count of these words is provided in 
+the distance box)
+3-select POS (optional) and generate a local word cloud
+4-you can also generate a global word cloud.
+
+5-select whether you want or not the weights (number of occurences) to be on the map and 
+then select generate map and save your map on your local machine
+6-export to a .csv file to be able to import again 

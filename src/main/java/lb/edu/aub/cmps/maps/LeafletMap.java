@@ -42,9 +42,9 @@ public class LeafletMap implements GenerateMap{
 		for(GeoLocation loc: locs){
 			double x = loc.getX();
 			double y = loc.getY();
-			String anno = loc.getAnnotation();
-			if (anno == null) anno = "";
-			else anno = loc.getLocation_name() +": "+anno;
+			String anno = ": " +loc.getAnnotation();
+			if (loc.getAnnotation() == null) anno = "";
+			anno = loc.getLocation_name() +anno;
 			//if(anno != null && anno.length()!=0)
 				out.print("\nL.marker(["+x+", "+y+"]).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 			
@@ -98,7 +98,12 @@ public class LeafletMap implements GenerateMap{
 			
 			System.out.println(radius);
 			String s = (w ==1)? "": "s";
-			String anno = loc.getLocation_name() + ": " +loc.getAnnotation()+" ("+(int)w+" time"+s+").";
+			
+			String anno = ": " +loc.getAnnotation();
+			if (loc.getAnnotation() == null) anno = "";
+			anno = loc.getLocation_name() +anno;
+			
+			anno = anno+" ("+(int)w+" time"+s+").";
 			out.print("\nL.circle(["+x+", "+y+"], " +(radius)+", { color: \'blue\', fillColor : \'#30f\', fillOpacity: 0.3}).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 		}
 		String tail = "\n</script>\n</body>\n</html>";
@@ -107,13 +112,7 @@ public class LeafletMap implements GenerateMap{
 		out.close();
 		
 	}
-	public static void main(String[] args) throws FileNotFoundException{
-		ImportFromCSV imp = new ImportFromCSV();
-		List<GeoLocation> geolocs = imp.importGeoLocations("Outputs\\output.csv");
-		LeafletMap map = new LeafletMap();
-		String path = "C:\\Users\\Lenovo\\Desktop\\Julia\\topo text\\testmap.html";
-		map.generateMapWithWeights(path, geolocs, "Your Map");
-	}
+
 	
 	public int getMaxWeight(List<GeoLocation> locs){
 		if(locs.size() == 0) return 1;

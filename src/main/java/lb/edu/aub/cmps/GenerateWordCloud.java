@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import javax.swing.JFileChooser;
+
+import edu.stanford.nlp.io.ExtensionFileFilter;
+
 public class GenerateWordCloud implements GenerateWordCloudInteface 
 {
 
@@ -24,10 +28,31 @@ public class GenerateWordCloud implements GenerateWordCloudInteface
 		
 		try 
 		{
-			File htmlToOpen = new File("Files/cloud.html");
+			JFileChooser fileChooser = new JFileChooser();
+			String SAVE_AS = ".html";
+			ExtensionFileFilter pFilter = new ExtensionFileFilter(SAVE_AS);
+			fileChooser.setFileFilter(pFilter);
+			int status = fileChooser.showSaveDialog(null);
+
+			if (status == JFileChooser.APPROVE_OPTION) {
+				File f = fileChooser.getSelectedFile();
+
+				String fileName = f.getAbsolutePath();
+				if (!fileName.endsWith(SAVE_AS)) {
+					f = new File(fileName + SAVE_AS);
+				}
+			File htmlToOpen = new File(f.getAbsolutePath());
+			
 			PrintStream out= new PrintStream(htmlToOpen);
 			out.print(all);
 			out.close();
+			try {
+				Desktop.getDesktop().browse(htmlToOpen.toURI());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
 		}
 		catch (FileNotFoundException e) 
 		{

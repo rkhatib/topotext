@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -45,7 +46,6 @@ import lb.edu.aub.cmps.maps.LeafletMap;
 import lb.edu.cmps.exporting.ExportI;
 import lb.edu.cmps.exporting.ExportToCSV;
 import edu.stanford.nlp.io.ExtensionFileFilter;
-import javax.swing.JTextField;
 
 public class Frame extends JFrame {
 	/**
@@ -62,9 +62,9 @@ public class Frame extends JFrame {
 	private LinkedList<Integer> wordIndeces;
 	private boolean isimp = false;
 	private ReadNovelInterface readNovel;
+	@SuppressWarnings("unused")
 	private GenerateWordCloudInteface generateCloud;
 	private PartsOfSpeechInterface pos;
-	private CountFrequency freq;
 
 	private List<GeoLocation> locations2;
 	private LinkedList<Integer> indicesForScroll;
@@ -74,10 +74,9 @@ public class Frame extends JFrame {
 	final JCheckBox chckbxVerb;
 	final JCheckBox chckbxAdverb;
 	final JCheckBox chckbxAdjective;
-
-	final JLabel lblMostFrequentWord;
 	private Set<String> locations;
 	private JTextField txt_fld_dist;
+	JLabel progress_label;
 
 	/**
 	 * Launch the application.
@@ -147,7 +146,7 @@ public class Frame extends JFrame {
 		});
 
 		final JCheckBox chkbox = new JCheckBox("New check box");
-		chkbox.setBounds(1009, 338, 22, 16);
+		chkbox.setBounds(1011, 364, 22, 16);
 		contentPane.add(chkbox);
 		final JScrollPane scrollArea = new JScrollPane();
 		scrollArea.setViewportBorder(new TitledBorder(null, "",
@@ -158,14 +157,14 @@ public class Frame extends JFrame {
 
 		textArea.setRows(10);
 		scrollArea.setViewportView(textArea);
-		btnHighlight.setBounds(857, 234, 278, 25);
+		btnHighlight.setBounds(857, 143, 278, 25);
 		contentPane.add(btnHighlight);
 
 		final JLabel lblCloudSize = new JLabel("Distance");
 		lblCloudSize.setForeground(new Color(72, 61, 139));
 		lblCloudSize.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 18));
-		lblCloudSize.setBounds(857, 164, 146, 20);
+		lblCloudSize.setBounds(857, 119, 146, 20);
 		contentPane.add(lblCloudSize);
 
 		final JButton btnPrevious = new JButton("Previous");
@@ -189,7 +188,7 @@ public class Frame extends JFrame {
 		});
 		btnPrevious.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN,
 				14));
-		btnPrevious.setBounds(857, 195, 126, 23);
+		btnPrevious.setBounds(857, 179, 126, 23);
 		contentPane.add(btnPrevious);
 
 		final JButton nextBtn = new JButton("Next");
@@ -211,7 +210,7 @@ public class Frame extends JFrame {
 			}
 		});
 		nextBtn.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
-		nextBtn.setBounds(1009, 195, 126, 23);
+		nextBtn.setBounds(1009, 179, 126, 23);
 		contentPane.add(nextBtn);
 
 		JLabel lblLocationDetector = new JLabel("Location Detector");
@@ -224,25 +223,25 @@ public class Frame extends JFrame {
 		chckbxNoun = new JCheckBox("Noun");
 		chckbxNoun.setEnabled(false);
 		chckbxNoun.setBackground(new Color(176, 224, 230));
-		chckbxNoun.setBounds(977, 115, 70, 23);
+		chckbxNoun.setBounds(977, 236, 70, 23);
 		contentPane.add(chckbxNoun);
 
 		chckbxVerb = new JCheckBox("Verb");
 		chckbxVerb.setEnabled(false);
 		chckbxVerb.setBackground(new Color(176, 224, 230));
-		chckbxVerb.setBounds(977, 134, 70, 23);
+		chckbxVerb.setBounds(977, 255, 70, 23);
 		contentPane.add(chckbxVerb);
 
 		chckbxAdjective = new JCheckBox("Adjective");
 		chckbxAdjective.setEnabled(false);
 		chckbxAdjective.setBackground(new Color(176, 224, 230));
-		chckbxAdjective.setBounds(1058, 115, 170, 23);
+		chckbxAdjective.setBounds(1058, 236, 170, 23);
 		contentPane.add(chckbxAdjective);
 
 		chckbxAdverb = new JCheckBox("Adverb");
 		chckbxAdverb.setEnabled(false);
 		chckbxAdverb.setBackground(new Color(176, 224, 230));
-		chckbxAdverb.setBounds(1058, 134, 170, 23);
+		chckbxAdverb.setBounds(1058, 255, 170, 23);
 		contentPane.add(chckbxAdverb);
 
 		final JButton btnCloud = new JButton("Generate word cloud");
@@ -307,8 +306,7 @@ public class Frame extends JFrame {
 						String toCloud = toCloud(neededWords);
 
 						generateCloud = new GenerateWordCloud(toCloud);
-						generateCloud.generateWordCloud(new File(
-								"Files/cloud.html"));
+
 					} catch (NumberFormatException e) {
 						JOptionPane
 								.showMessageDialog(
@@ -322,22 +320,14 @@ public class Frame extends JFrame {
 			}
 		});
 		btnCloud.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
-		btnCloud.setBounds(857, 270, 278, 23);
+		btnCloud.setBounds(857, 289, 278, 23);
 		contentPane.add(btnCloud);
-
-		lblMostFrequentWord = new JLabel("Most frequent word:");
-		lblMostFrequentWord.setForeground(new Color(72, 61, 139));
-		lblMostFrequentWord.setFont(new Font("Franklin Gothic Medium Cond",
-				Font.PLAIN, 18));
-		lblMostFrequentWord.setBounds(857, 374, 278, 24);
-		contentPane.add(lblMostFrequentWord);
-
-		lblMostFrequentWord.setEnabled(false);
 
 		final JButton btnMap = new JButton("Show map");
 		btnMap.setEnabled(false);
 		btnMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//	progress_label.setText("Getting geolocations");
 				if (!isimp && locations2 == null) {
 					GenerateGeoCoordinates geocoord = new GenerateGeoCoordinatesGeoNames();
 					GeoLocationWithOptions[] locs = geocoord
@@ -376,41 +366,34 @@ public class Frame extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-
-				/*DrawMapInterface drawMap = new DrawMap();
-				if ((countries_comboBox.getSelectedItem())
-						.equals("Select Country")) {
-					boolean done = drawMap.drawMap(locations);
-					if (!done)
-						JOptionPane.showMessageDialog(null,
-								"Error occured while drawing the map",
-								"Received Message",
-								JOptionPane.INFORMATION_MESSAGE);
-
-				} else {
-					boolean done = drawMap.drawMapInCountry(locations,null);
-					if (!done)
-						JOptionPane
-								.showMessageDialog(
-										null,
-										"Error occured while drawing the Map\nThe country you selected has no locations in this text",
-										"Received Message",
-										JOptionPane.INFORMATION_MESSAGE);
-
-				}*/
+				progress_label.setText("");
+				/*
+				 * DrawMapInterface drawMap = new DrawMap(); if
+				 * ((countries_comboBox.getSelectedItem())
+				 * .equals("Select Country")) { boolean done =
+				 * drawMap.drawMap(locations); if (!done)
+				 * JOptionPane.showMessageDialog(null,
+				 * "Error occured while drawing the map", "Received Message",
+				 * JOptionPane.INFORMATION_MESSAGE);
+				 * 
+				 * } else { boolean done =
+				 * drawMap.drawMapInCountry(locations,null); if (!done)
+				 * JOptionPane .showMessageDialog( null,
+				 * "Error occured while drawing the Map\nThe country you selected has no locations in this text"
+				 * , "Received Message", JOptionPane.INFORMATION_MESSAGE);
+				 * 
+				 * }
+				 */
 
 			}
 		});
 		btnMap.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
-		btnMap.setBounds(857, 338, 122, 23);
+		btnMap.setBounds(861, 357, 122, 23);
 		contentPane.add(btnMap);
 
 		JButton btnBrowse = new JButton("Browse");
 		btnBrowse.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN,
 				14));
-		final JLabel progressLabel = new JLabel("");
-		progressLabel.setBounds(857, 41, 266, 36);
-		contentPane.add(progressLabel);
 
 		final JButton btnGenerateGlobalWord = new JButton(
 				"Generate global word cloud");
@@ -424,13 +407,12 @@ public class Frame extends JFrame {
 				String toCloud = generateGlobalCloud(textArea, wordIndeces,
 						size);
 				generateCloud = new GenerateWordCloud(toCloud);
-				generateCloud.generateWordCloud(new File("Files/cloud.html"));
 			}
 		});
 		btnGenerateGlobalWord.setEnabled(false);
 		btnGenerateGlobalWord.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 14));
-		btnGenerateGlobalWord.setBounds(857, 304, 278, 23);
+		btnGenerateGlobalWord.setBounds(857, 323, 278, 23);
 		contentPane.add(btnGenerateGlobalWord);
 
 		final JButton export = new JButton("Export");
@@ -480,7 +462,7 @@ public class Frame extends JFrame {
 		contentPane.add(pathLabel);
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				progressLabel.setText("Loading to get the locations...");
+
 				JFileChooser chooser = new JFileChooser();
 
 				// we add the filter to force the user to add only properties
@@ -491,10 +473,10 @@ public class Frame extends JFrame {
 				chooser.addChoosableFileFilter(filter);
 				int returnVal = chooser.showOpenDialog(null);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					lblMostFrequentWord.setEnabled(true);
-
+					// lblMostFrequentWord.setEnabled(true);
+					//progress_label.setText("Loading text...");
 					comboBox.setEnabled(true);
-					//countries_comboBox.setEnabled(true);
+					// countries_comboBox.setEnabled(true);
 					btnPrevious.setEnabled(true);
 					nextBtn.setEnabled(true);
 					btnHighlight.setEnabled(true);
@@ -510,7 +492,6 @@ public class Frame extends JFrame {
 
 					pathLabel.setText(filePath.toString());
 					File file = new File(filePath);
-
 					try {
 						Scanner sc = new Scanner(file);
 						String text = " ";
@@ -538,7 +519,6 @@ public class Frame extends JFrame {
 					comboBox.setModel(new DefaultComboBoxModel<String>(
 							locationsArray));
 					locations = readNovel.getLocations();
-					progressLabel.setText("");
 				}
 			}
 		});
@@ -550,7 +530,7 @@ public class Frame extends JFrame {
 		lblPartOfSpeech.setForeground(new Color(72, 61, 139));
 		lblPartOfSpeech.setFont(new Font("Franklin Gothic Medium Cond",
 				Font.PLAIN, 16));
-		lblPartOfSpeech.setBounds(857, 113, 146, 20);
+		lblPartOfSpeech.setBounds(857, 234, 102, 20);
 		contentPane.add(lblPartOfSpeech);
 
 		JButton btnHelp = new JButton("Help");
@@ -614,13 +594,17 @@ public class Frame extends JFrame {
 		contentPane.add(btn_import);
 
 		JLabel lblShowWeights = new JLabel("Show weights");
-		lblShowWeights.setBounds(1037, 339, 96, 14);
+		lblShowWeights.setBounds(1039, 365, 96, 14);
 		contentPane.add(lblShowWeights);
 
 		txt_fld_dist = new JTextField();
-		txt_fld_dist.setBounds(974, 167, 161, 20);
+		txt_fld_dist.setBounds(974, 119, 161, 20);
 		contentPane.add(txt_fld_dist);
 		txt_fld_dist.setColumns(10);
+
+		progress_label = new JLabel("");
+		progress_label.setBounds(857, 55, 278, 22);
+		contentPane.add(progress_label);
 
 	}
 
@@ -643,18 +627,11 @@ public class Frame extends JFrame {
 						locationHighlighter);
 			}
 
-			// if (!cloudSizeField.getText().equals("")) {
 			try {
 				size = Integer.parseInt(txt_fld_dist.getText());
 			} catch (Exception e) {
 				size = 30;
 			}
-			LinkedList<String> words = returnWordsIgnoringUnintersesting(
-					textComp, currentLocation, size);
-
-			freq = new CountFrequencyImp(words);
-
-			lblMostFrequentWord.setText("Most Frequent Word: " + freq.MFW());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -800,7 +777,8 @@ public class Frame extends JFrame {
 
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		for (int i = 0; i < wordIndex.size(); i++) {
-			map.put(wordIndex.get(i), occurances.get(i));
+			if (i >= 0 && i < wordIndex.size() && i < occurances.size())
+				map.put(wordIndex.get(i), occurances.get(i));
 		}
 		return map;
 	}
@@ -835,13 +813,8 @@ public class Frame extends JFrame {
 				highlightWithDistance(textComp, location, indexList.get(index),
 						size, indexList);
 
-				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation, size);
-
-				freq = new CountFrequencyImp(words);
-
-				lblMostFrequentWord
-						.setText("Most Frequent Word: " + freq.MFW());
+				// lblMostFrequentWord
+				// .setText("Most Frequent Word: " + freq.MFW());
 			}
 		} catch (Exception e) {
 
@@ -886,13 +859,6 @@ public class Frame extends JFrame {
 				highlightWithDistance(textComp, location, indexList.get(index),
 						size, indexList);
 
-				LinkedList<String> words = returnWordsIgnoringUnintersesting(
-						textComp, currentLocation, size);
-
-				freq = new CountFrequencyImp(words);
-
-				lblMostFrequentWord
-						.setText("Most Frequent Word: " + freq.MFW());
 			}
 		} catch (Exception e) {
 

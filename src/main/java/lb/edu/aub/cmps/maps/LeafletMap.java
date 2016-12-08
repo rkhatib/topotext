@@ -44,7 +44,7 @@ public class LeafletMap implements GenerateMap{
 			double y = loc.getY();
 			String anno = loc.getAnnotation();
 			if (anno == null) anno = "";
-			anno = loc.getLocation_name() +": "+anno;
+			else anno = loc.getLocation_name() +": "+anno;
 			//if(anno != null && anno.length()!=0)
 				out.print("\nL.marker(["+x+", "+y+"]).addTo(map).bindPopup(\""+anno+"\").openPopup();");
 			

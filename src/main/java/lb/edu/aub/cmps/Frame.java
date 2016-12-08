@@ -90,6 +90,8 @@ public class Frame extends JFrame {
 		pos = new PartsOfSpeechImp();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 494);
+
+
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(241, 230, 140));
 		contentPane.setBackground(new Color(176, 224, 230));
@@ -102,6 +104,9 @@ public class Frame extends JFrame {
 		textArea.setColumns(5);
 		textArea.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textArea.setEditable(false);
+		progress_label = new JLabel("");
+
+		contentPane.add(progress_label);
 
 		final JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setEnabled(false);
@@ -262,6 +267,9 @@ public class Frame extends JFrame {
 						} catch (Exception e) {
 							size = 30;
 						}
+
+						progress_label.setText("Parsing text and POS tagging");
+						progress_label.update(progress_label.getGraphics());
 						LinkedList<String> words = returnWords(textArea,
 								currentLocation, size);
 
@@ -306,7 +314,8 @@ public class Frame extends JFrame {
 						String toCloud = toCloud(neededWords);
 
 						generateCloud = new GenerateWordCloud(toCloud);
-
+						progress_label.setText("");
+						progress_label.update(progress_label.getGraphics());
 					} catch (NumberFormatException e) {
 						JOptionPane
 								.showMessageDialog(
@@ -327,7 +336,9 @@ public class Frame extends JFrame {
 		btnMap.setEnabled(false);
 		btnMap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	progress_label.setText("Getting geolocations");
+
+				progress_label.setText("Getting geolocations...");
+				progress_label.update(progress_label.getGraphics());
 				if (!isimp && locations2 == null) {
 					GenerateGeoCoordinates geocoord = new GenerateGeoCoordinatesGeoNames();
 					GeoLocationWithOptions[] locs = geocoord
@@ -340,6 +351,10 @@ public class Frame extends JFrame {
 							locations2.add(loc.getGeoLocations().get(0));
 					}
 				}
+
+				progress_label.setText("");
+				progress_label.update(progress_label.getGraphics());
+				
 				JFileChooser fileChooser = new JFileChooser();
 				String SAVE_AS = ".html";
 				ExtensionFileFilter pFilter = new ExtensionFileFilter(SAVE_AS);
@@ -404,9 +419,14 @@ public class Frame extends JFrame {
 				} catch (Exception e2) {
 					size = 30;
 				}
+
+				progress_label.setText("parsing text and POS tagging...");
+				progress_label.update(progress_label.getGraphics());
 				String toCloud = generateGlobalCloud(textArea, wordIndeces,
 						size);
 				generateCloud = new GenerateWordCloud(toCloud);
+				progress_label.setText("");
+				progress_label.update(progress_label.getGraphics());
 			}
 		});
 		btnGenerateGlobalWord.setEnabled(false);
@@ -473,10 +493,8 @@ public class Frame extends JFrame {
 				chooser.addChoosableFileFilter(filter);
 				int returnVal = chooser.showOpenDialog(null);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					// lblMostFrequentWord.setEnabled(true);
-					//progress_label.setText("Loading text...");
+					
 					comboBox.setEnabled(true);
-					// countries_comboBox.setEnabled(true);
 					btnPrevious.setEnabled(true);
 					nextBtn.setEnabled(true);
 					btnHighlight.setEnabled(true);
@@ -503,10 +521,13 @@ public class Frame extends JFrame {
 						sc.close();
 						textArea.setText(text);
 
+						textArea.update(textArea.getGraphics());
+
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
-
+					progress_label.setText("Extracting locations");
+					progress_label.update(progress_label.getGraphics());
 					readNovel = new ReadNovelImp(filePath);
 					locations = readNovel.getLocations();
 					String[] locationsArray = new String[locations.size() + 1];
@@ -519,6 +540,9 @@ public class Frame extends JFrame {
 					comboBox.setModel(new DefaultComboBoxModel<String>(
 							locationsArray));
 					locations = readNovel.getLocations();
+
+					progress_label.setText("");
+					progress_label.update(progress_label.getGraphics());
 				}
 			}
 		});
@@ -601,8 +625,6 @@ public class Frame extends JFrame {
 		txt_fld_dist.setBounds(974, 119, 161, 20);
 		contentPane.add(txt_fld_dist);
 		txt_fld_dist.setColumns(10);
-
-		progress_label = new JLabel("");
 		progress_label.setBounds(857, 55, 278, 22);
 		contentPane.add(progress_label);
 

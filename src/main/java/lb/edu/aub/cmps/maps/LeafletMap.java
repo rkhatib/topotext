@@ -6,7 +6,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import lb.edu.aub.cmps.GeoLocation;
-import lb.edu.aub.cmps.importing.ImportFromCSV;
 
 public class LeafletMap implements GenerateMap{
 

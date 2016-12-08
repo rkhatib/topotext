@@ -125,13 +125,13 @@ public class Frame extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					chosenLocation = "" + comboBox.getSelectedItem();
-					
-					try{
+
+					try {
 						size = Integer.parseInt(txt_fld_dist.getText());
-					}catch(Exception e){
+					} catch (Exception e) {
 						size = 30;
 					}
-					
+
 					wordIndeces = readNovel.getLocationsWithIndeces().get(
 							chosenLocation);
 					currentLocation = wordIndeces.get(0);
@@ -147,7 +147,7 @@ public class Frame extends JFrame {
 		});
 
 		final JCheckBox chkbox = new JCheckBox("New check box");
-		chkbox.setBounds(1011, 364, 22, 16);
+		chkbox.setBounds(1009, 338, 22, 16);
 		contentPane.add(chkbox);
 		final JScrollPane scrollArea = new JScrollPane();
 		scrollArea.setViewportBorder(new TitledBorder(null, "",
@@ -258,9 +258,9 @@ public class Frame extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					try {
-						try{
+						try {
 							size = Integer.parseInt(txt_fld_dist.getText());
-						}catch(Exception e){
+						} catch (Exception e) {
 							size = 30;
 						}
 						LinkedList<String> words = returnWords(textArea,
@@ -325,13 +325,6 @@ public class Frame extends JFrame {
 		btnCloud.setBounds(857, 270, 278, 23);
 		contentPane.add(btnCloud);
 
-		final JComboBox<String> countries_comboBox = new JComboBox<String>();
-		countries_comboBox.setEnabled(false);
-		countries_comboBox.setBounds(857, 334, 126, 25);
-		contentPane.add(countries_comboBox);
-		countries_comboBox.setModel(new DefaultComboBoxModel<String>(
-				WorldCountries.countries()));
-
 		lblMostFrequentWord = new JLabel("Most frequent word:");
 		lblMostFrequentWord.setForeground(new Color(72, 61, 139));
 		lblMostFrequentWord.setFont(new Font("Franklin Gothic Medium Cond",
@@ -384,28 +377,32 @@ public class Frame extends JFrame {
 					}
 				}
 
-				/*
-				 * DrawMapInterface drawMap = new DrawMap(); if
-				 * ((countries_comboBox.getSelectedItem())
-				 * .equals("Select Country")) { boolean done =
-				 * drawMap.drawMap(locations); if (!done)
-				 * JOptionPane.showMessageDialog(null,
-				 * "Error occured while drawing the map", "Received Message",
-				 * JOptionPane.INFORMATION_MESSAGE);
-				 * 
-				 * } else { boolean done = drawMap.drawMapInCountry(locations,
-				 * (String) countries_comboBox.getSelectedItem()); if (!done)
-				 * JOptionPane .showMessageDialog( null,
-				 * "Error occured while drawing the Map\nThe country you selected has no locations in this text"
-				 * , "Received Message", JOptionPane.INFORMATION_MESSAGE);
-				 * 
-				 * }
-				 */
+				/*DrawMapInterface drawMap = new DrawMap();
+				if ((countries_comboBox.getSelectedItem())
+						.equals("Select Country")) {
+					boolean done = drawMap.drawMap(locations);
+					if (!done)
+						JOptionPane.showMessageDialog(null,
+								"Error occured while drawing the map",
+								"Received Message",
+								JOptionPane.INFORMATION_MESSAGE);
+
+				} else {
+					boolean done = drawMap.drawMapInCountry(locations,null);
+					if (!done)
+						JOptionPane
+								.showMessageDialog(
+										null,
+										"Error occured while drawing the Map\nThe country you selected has no locations in this text",
+										"Received Message",
+										JOptionPane.INFORMATION_MESSAGE);
+
+				}*/
 
 			}
 		});
 		btnMap.setFont(new Font("Franklin Gothic Medium Cond", Font.PLAIN, 14));
-		btnMap.setBounds(1013, 334, 122, 23);
+		btnMap.setBounds(857, 338, 122, 23);
 		contentPane.add(btnMap);
 
 		JButton btnBrowse = new JButton("Browse");
@@ -419,12 +416,13 @@ public class Frame extends JFrame {
 				"Generate global word cloud");
 		btnGenerateGlobalWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
+				try {
 					size = Integer.parseInt(txt_fld_dist.getText());
-				}catch(Exception e2){
+				} catch (Exception e2) {
 					size = 30;
 				}
-				String toCloud = generateGlobalCloud(textArea, wordIndeces, size);
+				String toCloud = generateGlobalCloud(textArea, wordIndeces,
+						size);
 				generateCloud = new GenerateWordCloud(toCloud);
 				generateCloud.generateWordCloud(new File("Files/cloud.html"));
 			}
@@ -496,7 +494,7 @@ public class Frame extends JFrame {
 					lblMostFrequentWord.setEnabled(true);
 
 					comboBox.setEnabled(true);
-					countries_comboBox.setEnabled(true);
+					//countries_comboBox.setEnabled(true);
 					btnPrevious.setEnabled(true);
 					nextBtn.setEnabled(true);
 					btnHighlight.setEnabled(true);
@@ -616,9 +614,9 @@ public class Frame extends JFrame {
 		contentPane.add(btn_import);
 
 		JLabel lblShowWeights = new JLabel("Show weights");
-		lblShowWeights.setBounds(1039, 365, 96, 14);
+		lblShowWeights.setBounds(1037, 339, 96, 14);
 		contentPane.add(lblShowWeights);
-		
+
 		txt_fld_dist = new JTextField();
 		txt_fld_dist.setBounds(974, 167, 161, 20);
 		contentPane.add(txt_fld_dist);
@@ -646,9 +644,9 @@ public class Frame extends JFrame {
 			}
 
 			// if (!cloudSizeField.getText().equals("")) {
-			try{
+			try {
 				size = Integer.parseInt(txt_fld_dist.getText());
-			}catch(Exception e){
+			} catch (Exception e) {
 				size = 30;
 			}
 			LinkedList<String> words = returnWordsIgnoringUnintersesting(
@@ -829,9 +827,9 @@ public class Frame extends JFrame {
 				index++;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex + 100);
-				try{
+				try {
 					size = Integer.parseInt(txt_fld_dist.getText());
-				}catch(Exception e){
+				} catch (Exception e) {
 					size = 30;
 				}
 				highlightWithDistance(textComp, location, indexList.get(index),
@@ -869,9 +867,9 @@ public class Frame extends JFrame {
 				index--;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
-				try{
+				try {
 					size = Integer.parseInt(txt_fld_dist.getText());
-				}catch(Exception e){
+				} catch (Exception e) {
 					size = 30;
 				}
 				highlightWithDistance(textComp, location, indexList.get(index),
@@ -880,9 +878,9 @@ public class Frame extends JFrame {
 				index = indexList.size() - 1;
 				setCurrentLocation(indexList.get(index));
 				textComp.setCaretPosition(currentIndex);
-				try{
+				try {
 					size = Integer.parseInt(txt_fld_dist.getText());
-				}catch(Exception e){
+				} catch (Exception e) {
 					size = 30;
 				}
 				highlightWithDistance(textComp, location, indexList.get(index),

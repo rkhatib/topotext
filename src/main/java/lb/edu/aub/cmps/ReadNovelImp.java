@@ -1,5 +1,6 @@
 package lb.edu.aub.cmps;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+
+import javax.swing.JOptionPane;
 
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;

@@ -28,8 +28,8 @@ public class GeoLocationWithOptions {
 		this.geoLocations = geoLocations;
 	}
 
-	public void add(String name, double x, double y, String coutry, String alt_names, int weight){
-		this.geoLocations.add(new GeoLocation(name, x, y, coutry, weight));
+	public void add(String name, double x, double y, String country, String alt_names, int weight){
+		this.geoLocations.add(new GeoLocation(name, x, y, country, weight));
 	}
 	
 	public int getWeight(){

@@ -29,9 +29,10 @@ public class ExportToCSV implements ExportI {
 		writer.append("Y,");
 		writer.append("Weight,");
 		writer.append("Annotation\n");
-		Set<String> countries = new HashSet<String>();
 
 		for(GeoLocationWithOptions loc: locations){
+			Set<String> countries = new HashSet<String>();
+
 			if(loc != null){
 				String name = loc.getLocation_name();
 				for(GeoLocation l: loc.getGeoLocations()){

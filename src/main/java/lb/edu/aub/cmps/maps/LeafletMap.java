@@ -13,30 +13,40 @@ public class LeafletMap implements GenerateMap{
 		PrintStream out = new PrintStream(new File(path));
 		
 		//head
-		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
-				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
-				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
-				"\n</head>\n<body>\n"+"	<div id=\"map\"></div>"+
-				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
-				"<style>"+
-  "#map {"+
-    "position: fixed;"+
-    "width: 100%;"+
-    "height: 100%;"+
-    "left: 0;"+
-    "top: 0;"+
-    
-  "}"+
-  "</style>"+
-				"\n<script>"+
-				"\nvar map = L.map(\'map\').setView([51.505, -0.09], 2);"+
-				"\n		L.tileLayer(\'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw\', {"+
-				"\nmaxZoom: 18 ,"+
-				"\n			attribution: \'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, \' +"+
-				"\n				\'<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, \' +"+
-				"\n				\'Imagery  <a href=\"http://mapbox.com\">Mapbox</a>\',"+
-				"\n			id: \'mapbox.streets\'"+
-				"}).addTo(map);";
+		//head
+				String head = "<!DOCTYPE html>\n"+
+		"<html>\n"+
+		"<head>\n"+
+			
+			"<title>Your map</title>\n"+
+
+			"<meta charset=\"utf-8\" />\n"+
+			"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+
+			
+			"<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"docs/images/favicon.ico\" />"+
+
+			"<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.0.3/dist/leaflet.css\" />\n"+
+			"<script src=\"https://unpkg.com/leaflet@1.0.3/dist/leaflet.js\"></script>\n"+
+
+
+			
+		"</head>\n"+
+		"<body>\n"+
+
+
+
+"<div id=\"mapid\" style=\"width: 100%; height:100%; position: fixed;top: 0;left: 0; height: 100%;\"></div>"+
+		"<script>\n"+
+
+			"var map = L.map('mapid').setView([51.505, -0.09], 2);\n"+
+
+			"L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {\n"+
+				"maxZoom: 18,\n"+
+				"attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, ' +\n"+
+					"'<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, ' +\n"+
+					"'Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',\n"+
+				"id: 'mapbox.streets'\n"+
+			"}).addTo(map);\n";
 		out.print(head);
 		for(GeoLocation loc: locs){
 			double x = loc.getX();
@@ -58,30 +68,39 @@ public class LeafletMap implements GenerateMap{
 	public void generateMapWithWeights(String path, List<GeoLocation> locs, String title) throws FileNotFoundException {
 		PrintStream out = new PrintStream(new File(path));
 		//head
-		String head = "<!DOCTYPE html>\n<html>\n<head>\n<title>"+title+"</title>\n " +
-				"<meta charset=\"utf-8\" />\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
-				"\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />"+
-				"\n</head>\n<body>\n"+"	<div id=\"map\"></div>"+
-				"	\n<script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>"+
-				"<style>"+
-  "#map {"+
-    "position: fixed;"+
-    "width: 100%;"+
-    "height: 100%;"+
-    "left: 0;"+
-    "top: 0;"+
-    
-  "}"+
-  "</style>"+
-				"\n<script>"+
-				"\nvar map = L.map(\'map\').setView([51.505, -0.09], 2);"+
-				"\n		L.tileLayer(\'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw\', {"+
-				"\nmaxZoom: 18 ,"+
-				"\n			attribution: \'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, \' +"+
-				"\n				\'<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, \' +"+
-				"\n				\'Imagery  <a href=\"http://mapbox.com\">Mapbox</a>\',"+
-				"\n			id: \'mapbox.streets\'"+
-				"}).addTo(map);";
+		String head = "<!DOCTYPE html>\n"+
+				"<html>\n"+
+				"<head>\n"+
+					
+					"<title>Your map</title>\n"+
+
+					"<meta charset=\"utf-8\" />\n"+
+					"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+
+					
+					"<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"docs/images/favicon.ico\" />"+
+
+					"<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.0.3/dist/leaflet.css\" />\n"+
+					"<script src=\"https://unpkg.com/leaflet@1.0.3/dist/leaflet.js\"></script>\n"+
+
+
+					
+				"</head>\n"+
+				"<body>\n"+
+
+
+
+		"<div id=\"mapid\" style=\"width: 100%; height:100%; position: fixed;top: 0;left: 0; height: 100%;\"></div>"+
+				"<script>\n"+
+
+					"var map = L.map('mapid').setView([51.505, -0.09], 2);\n"+
+
+					"L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {\n"+
+						"maxZoom: 18,\n"+
+						"attribution: 'Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, ' +\n"+
+							"'<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, ' +\n"+
+							"'Imagery © <a href=\"http://mapbox.com\">Mapbox</a>',\n"+
+						"id: 'mapbox.streets'\n"+
+					"}).addTo(map);\n";
 		out.print(head);
 		//int max = getMaxWeight(locs);
 		for(GeoLocation loc: locs){

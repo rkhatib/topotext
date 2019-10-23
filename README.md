@@ -5,9 +5,11 @@ TopoText is a digital mapping and text analysis software prototype was built by 
 The target users for this tool are researchers conducting a geospatial analysis of a work and exploring topics that occur around specific place names in or across texts. No technical background is required for using TopoText, nor does it require a steep learning curve; it was purposely designed to provide a quick and easy entry point from which to conduct a spatial analysis that could help guide further spatial investigations. In addition, users can upload any type of plain text in English, French, German, or Spanish.
 
 #Licensing
+
 TopoText is published under the CreativeCommons 4.0 license (CC BY 4.0). This license gives users the right to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon) the material if they give authorship attribution. 
 
 #Authors
+
 Randa El Khatib, Mohamad Jaber, David Wrisley, Wassim El-Hajj, Shady Elbassuoni, Bilal Abi Farraj, Julia El Zini, Houda Nasser,Shadia Barada, and Yasmin Kadah. 
 
 If you need any further help, please contact us on:

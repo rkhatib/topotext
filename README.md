@@ -9,7 +9,7 @@ Please see the file called LICENSE.
 
 #Authors
 
-Randa El Khatib (project manager), Julia El Zini (developer), David Joseph Wrisley , Shady Elbassuoni, and Mohamad Jaber
+Randa El Khatib (project manager), Julia El Zini (developer), David Joseph Wrisley, Mohamad Jaber, and Shady Elbassuoni.
 
 If you need any further help, please contact us on:
 Randa El Khatib <khatib@uvic.ca>

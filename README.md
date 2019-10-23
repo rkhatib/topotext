@@ -6,7 +6,7 @@ The target users for this tool are researchers conducting a geospatial analysis 
 
 #Licensing
 
-TopoText is published under the CreativeCommons 4.0 license (CC BY 4.0). This license gives users the right to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon) the material if they give authorship attribution. 
+See LICENSE
 
 #Authors
 

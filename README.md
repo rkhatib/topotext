@@ -6,7 +6,7 @@ The target users for this tool are researchers conducting a geospatial analysis 
 
 #Licensing
 
-See LICENSE
+Please see the file called LICENSE.
 
 #Authors
 

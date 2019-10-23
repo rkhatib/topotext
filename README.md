@@ -1,32 +1,17 @@
-#Topotext 
+#TopoText 
 
-TopoText is an interactive tool for digital mapping of literary text. TopoText
-takes as input a literary piece of text such as a novel or a biography article and automatically
-extracts all place names in the text. The identified places are then geoparsed and displayed on
-an interactive map. TopoText calculates the number of times a place was mentioned in the text,
-which is then reflected on the map allowing the end-user to grasp the importance of the different
-places within the text. It also displays the most frequent words mentioned within a specified
-proximity of a place name in context or across the entire text. This can also be faceted according
-to part of speech tags. Finally, TopoText keeps the human in the loop by allowing the end-user
-to disambiguate places and to provide specific place annotations. All extracted information such
-as geolocations, place frequencies, word clouds as well as all user-provided annotations can be
-automatically exported as a CSV file that can be imported later by the same user or any other
-user.
+TopoText is a digital mapping and text analysis software prototype was built by remixing features of open-source tools. After inputting a text in plain text (.txt) format, TopoText matches all unambiguous place names with geographical coordinates and displays them on a map interface using the Stanford Named Entity Recognition (NER) Tagger. Matching is carried out using the Google Maps Platform and placed onto a Google Maps Engine basemap. Coordinated with the map are text analysis and concordance tools that display the context in which the place names occur and allow manipulation of the content for analysis. Manipulation of text is carried out by collocating place-name occurrences and words that appear around them using Wordle. Users can specify the number of words to collocate around a place name, and can categorize them according to part of speech with the embedded Stanford Part-of-Speech (POS) Tagger, which extracts nouns, verbs, adjectives, or adverbs. These collocations can be localized to the specific passage in which the place name appears, or generated across the entire text by counting the most frequent word collocations around a selected place name.
+
+The target users for this tool are researchers conducting a geospatial analysis of a work and exploring topics that occur around specific place names in or across texts. No technical background is required for using TopoText, nor does it require a steep learning curve; it was purposely designed to provide a quick and easy entry point from which to conduct a spatial analysis that could help guide further spatial investigations. In addition, users can upload any type of plain text in English, French, German, or Spanish.
 
 #Licensing
-Please see the file called LICENSE.
+TopoText is published under the CreativeCommons 4.0 license (CC BY 4.0). This license gives users the right to share (copy and redistribute the material in any medium or format) and adapt (remix, transform, and build upon) the material if they give authorship attribution. 
 
 #Authors
-Bilal Abi Farraj, David Wrisley, Houda Nasser, Julia El Zini, Mohamad Jaber, Randa El Khatib, Shady Elbassuoni, Shadia Barada, Wassim El-Hajj and Yasmin Kadah. 
-
+Randa El Khatib, Mohamad Jaber, David Wrisley, Wassim El-Hajj, Shady Elbassuoni, Bilal Abi Farraj, Julia El Zini, Houda Nasser,Shadia Barada, and Yasmin Kadah. 
 
 If you need any further help, please contact us on:
- - jwe04@mail.aub.edu
- - bya03@mail.aub.edu
- - se58@aub.edu.lb
- - mj54@aub.edu.lb
- - rme45@mail.aub.edu
- - dw04@aub.edu.lb
+Randa El Khatib <khatib@uvic.ca>
 
 
-
+ 

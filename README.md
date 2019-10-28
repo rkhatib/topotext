@@ -11,9 +11,8 @@ Please see the file called LICENSE.
 
 Randa El Khatib (project manager), Julia El Zini (developer), David Joseph Wrisley, Mohamad Jaber, and Shady Elbassuoni.
 
-If you need any further help, please contact us on:
+If you need any further help or have any questions, please contact Randa El Khatib <khatib@uvic.ca>.
 
-Randa El Khatib <khatib@uvic.ca>
 
 
 

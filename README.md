@@ -12,7 +12,7 @@ Please see the file called LICENSE.
 
 Randa El Khatib, Julia El Zini, Mohamad Jaber, David Wrisley, Wassim El-Hajj, Shady Elbassuoni, Bilal Abi Farraj, Houda Nasser,Shadia Barada, and Yasmin Kadah. 
 
-If you need any further help or have any questions, please contact Randa El Khatib <khatib@uvic.ca>
+If you need any further help or have any questions, please contact Randa El Khatib <khatib@uvic.ca>.
 
 
  
